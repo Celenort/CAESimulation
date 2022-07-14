@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace CAESimulation
 {
-    public partial class Form1 : Form
+    public partial class CAESimulation : Form
     {
-        public Form1()
+        public CAESimulation()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Input ip = new Input();
+            ip.LoadFiles();
+            dataGridView1.DataSource = ip.dtWind;
         }
     }
 }

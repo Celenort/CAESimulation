@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data;
+
 
 namespace CAESimulation
 {
@@ -14,9 +16,10 @@ namespace CAESimulation
         [STAThread]
         static void Main()
         {
+            int a = (char)'\t';
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new CAESimulation());
         }
     }
 }
