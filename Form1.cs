@@ -20,8 +20,10 @@ namespace CAESimulation
         private void button1_Click(object sender, EventArgs e)
         {
             Input ip = new Input();
-            ip.LoadFiles();
-            dataGridView1.DataSource = ip.dtWind;
+            ip.LoadWind();
+            Turbine tb = new Turbine();
+            tb.SelectModel();
+            dataGridView1.DataSource = tb.dtTb;
         }
     }
 }
