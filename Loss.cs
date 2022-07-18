@@ -11,7 +11,7 @@ namespace CAESimulation
 {
     class Loss
     {
-    // Todo : 발전량 손실 계산에 관련된 부분
+    // 테스트
 
     }
 }
