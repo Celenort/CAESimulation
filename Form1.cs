@@ -21,9 +21,10 @@ namespace CAESimulation
         {
             Input ip = new Input();
             ip.LoadWind();
+            ip.LoadPower();
             Turbine tb = new Turbine();
             tb.SelectModel();
-            dataGridView1.DataSource = tb.dtTb;
+            dataGridView1.DataSource = ip.dtPower;
         }
     }
 }

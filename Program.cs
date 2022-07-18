@@ -16,7 +16,6 @@ namespace CAESimulation
         [STAThread]
         static void Main()
         {
-            int a = (char)'\t';
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CAESimulation());
