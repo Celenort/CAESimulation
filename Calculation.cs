@@ -15,6 +15,7 @@ namespace CAESimulation
         public DataTable dtPower;
         public DataTable dtTb;
         public DataTable dtPwrGen;
+        private double pwrUsageProportion = 66000 / 558338404;
         public void LoadDataTable(Input ip, Turbine tb)
         {
             dtWind = ip.dtWind;
@@ -29,7 +30,7 @@ namespace CAESimulation
             char[] dateAsChar = date.ToCharArray();
 
             dateAsChar[11] = '0';
-            dateAsChar[12] = '0';
+            dateAsChar[12] = '0'; // make "24" -> "00"
 
             string newDate = new string(dateAsChar);
             DateTime dtTime = DateTime.ParseExact(newDate, "yyyy-MM-ddTHH:mm:ss",
@@ -61,14 +62,28 @@ namespace CAESimulation
             double P2 = Double.Parse(dr2["P"].ToString());
 
             double proportion = (velo - arrDouble[i]) / (arrDouble[i + 1] - arrDouble[i]);
-            return (proportion * P2 + (1 - proportion) * P1);
+            return Math.Round((proportion * P2 + (1 - proportion) * P1),5);
         }
 
         public DataTable VelocityToPower(DataTable dtWind, DataTable dtTb)
         {
             //Todo: Vel ->Pwr
+            DataTable dtOutput = dtWind.Copy();
+            dtOutput.Columns.Add(new DataColumn("CvtPwr", typeof(double)));
+            foreach (DataRow dr in dtOutput.Rows)
+            {
+                dr["CvtPwr"] = LinIntp(Double.Parse(dr["Speed"].ToString()), dtTb);
+            }
+            dtPwrGen = dtOutput;
 
-            return new DataTable();
+            return dtOutput;
+        }
+        public void ConvertGlobalToLocalUsage()
+        {
+            foreach (DataRow dr in dtPower.Rows)
+            {
+                dr["Power"] = Math.Round(Double.Parse(dr["Power"].ToString()) * pwrUsageProportion,9);
+            }
         }
     }
 }

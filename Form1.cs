@@ -24,7 +24,10 @@ namespace CAESimulation
             ip.LoadPower();
             Turbine tb = new Turbine();
             tb.SelectModel();
-            dataGridView1.DataSource = ip.dtPower;
+            Calculation cc = new Calculation();
+            DataTable dt = cc.VelocityToPower(ip.dtWind, tb.dtTb);
+
+            dataGridView1.DataSource = dt;
         }
     }
 }
