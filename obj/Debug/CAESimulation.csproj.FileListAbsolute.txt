@@ -19,3 +19,14 @@ C:\Users\hyung\Source\Repos\Celenort\CAESimulation\obj\Debug\CAESimulation.cspro
 C:\Users\hyung\Source\Repos\Celenort\CAESimulation\obj\Debug\CAESimulation.csproj.CoreCompileInputs.cache
 C:\Users\hyung\Source\Repos\Celenort\CAESimulation\obj\Debug\CAESimulation.exe
 C:\Users\hyung\Source\Repos\Celenort\CAESimulation\obj\Debug\CAESimulation.pdb
+C:\Users\hyung\OneDrive\바탕 화면\CAE\obj\Debug\CAESimulation.csproj.AssemblyReference.cache
+C:\Users\hyung\OneDrive\바탕 화면\CAE\obj\Debug\CAESimulation.csproj.SuggestedBindingRedirects.cache
+C:\Users\hyung\OneDrive\바탕 화면\CAE\obj\Debug\CAESimulation.CAESimulation.resources
+C:\Users\hyung\OneDrive\바탕 화면\CAE\obj\Debug\CAESimulation.Properties.Resources.resources
+C:\Users\hyung\OneDrive\바탕 화면\CAE\obj\Debug\CAESimulation.csproj.GenerateResource.cache
+C:\Users\hyung\OneDrive\바탕 화면\CAE\obj\Debug\CAESimulation.csproj.CoreCompileInputs.cache
+C:\Users\hyung\OneDrive\바탕 화면\CAE\obj\Debug\CAESimulation.exe
+C:\Users\hyung\OneDrive\바탕 화면\CAE\obj\Debug\CAESimulation.pdb
+C:\Users\hyung\OneDrive\바탕 화면\CAE\bin\Debug\CAESimulation.exe.config
+C:\Users\hyung\OneDrive\바탕 화면\CAE\bin\Debug\CAESimulation.exe
+C:\Users\hyung\OneDrive\바탕 화면\CAE\bin\Debug\CAESimulation.pdb

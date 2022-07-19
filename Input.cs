@@ -104,6 +104,13 @@ namespace CAESimulation
                 for (int i =1;i<25;i++)
                 {
                     DataRow dr = dtPower.NewRow();
+                    if (i==24)
+                    {
+                        dr["Date"] = Calculation.DissectDateTime(date + "T" + hourdict[i] + ":00:00");
+                        dr["Power"] = sitems[i];
+                        dtPower.Rows.Add(dr);
+                        break;
+                    }
                     dr["Date"] = date + "T" + hourdict[i]+":00:00";
                     dr["Power"] = sitems[i];
                     dtPower.Rows.Add(dr);

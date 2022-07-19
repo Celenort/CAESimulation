@@ -4,3 +4,6 @@
 
 *.vsidx
 *.sqlite
+bin/
+obj/
+.vs/
