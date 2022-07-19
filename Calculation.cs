@@ -15,12 +15,13 @@ namespace CAESimulation
         public DataTable dtPower;
         public DataTable dtTb;
         public DataTable dtPwrGen;
-        private double pwrUsageProportion = 66000 / 558338404;
+        private int pwrUsageTotal = 558338404;
+        private int pwrUsageProportion = 66000;
         public void LoadDataTable(Input ip, Turbine tb)
         {
-            dtWind = ip.dtWind;
-            dtPower = ip.dtPower;
-            dtTb = tb.dtTb; // Load Infors from Tb, ip class
+            dtWind = ip.dtWind.Copy();
+            dtPower = ip.dtPower.Copy();
+            dtTb = tb.dtTb.Copy(); // Load Infors from Tb, ip class
         }
         public static string DissectDateTime(string date) // 0 to 23
         {
@@ -82,7 +83,26 @@ namespace CAESimulation
         {
             foreach (DataRow dr in dtPower.Rows)
             {
-                dr["Power"] = Math.Round(Double.Parse(dr["Power"].ToString()) * pwrUsageProportion,9);
+                //dr["Power"] = Math.Round(Double.Parse(dr["Power"].ToString()) * pwrUsageProportion,3);
+                dr["Power"] = Double.Parse(dr["Power"].ToString()) * pwrUsageProportion / pwrUsageTotal;
+            }
+        }
+        public void MergePwrgen()
+        {
+            dtPwrGen.Columns.Add(new DataColumn("PwrConsump", typeof(double)));
+            foreach (DataRow dr in dtPwrGen.Rows)
+            {
+                object date = dr["Date"];
+                DataRow powerRow = dtPower.Rows.Find(date);
+
+                if (powerRow!=null)
+                {
+                    dr["PwrConsump"] = powerRow["Power"];
+                } else
+                {
+                    dr["PwrConsump"] = -1;
+                }
+
             }
         }
     }

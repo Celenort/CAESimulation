@@ -25,9 +25,12 @@ namespace CAESimulation
             Turbine tb = new Turbine();
             tb.SelectModel();
             Calculation cc = new Calculation();
+            cc.LoadDataTable(ip, tb);
+            cc.ConvertGlobalToLocalUsage();
             DataTable dt = cc.VelocityToPower(ip.dtWind, tb.dtTb);
+            cc.MergePwrgen();
 
-            dataGridView1.DataSource = dt;
+            dataGridView1.DataSource = cc.dtPwrGen;
         }
     }
 }
