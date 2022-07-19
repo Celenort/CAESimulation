@@ -30,3 +30,8 @@ C:\Users\hyung\OneDrive\바탕 화면\CAE\obj\Debug\CAESimulation.pdb
 C:\Users\hyung\OneDrive\바탕 화면\CAE\bin\Debug\CAESimulation.exe.config
 C:\Users\hyung\OneDrive\바탕 화면\CAE\bin\Debug\CAESimulation.exe
 C:\Users\hyung\OneDrive\바탕 화면\CAE\bin\Debug\CAESimulation.pdb
+C:\Users\hyung\OneDrive\바탕 화면\CAE\bin\Debug\OxyPlot.dll
+C:\Users\hyung\OneDrive\바탕 화면\CAE\bin\Debug\OxyPlot.WindowsForms.dll
+C:\Users\hyung\OneDrive\바탕 화면\CAE\bin\Debug\OxyPlot.xml
+C:\Users\hyung\OneDrive\바탕 화면\CAE\bin\Debug\OxyPlot.WindowsForms.xml
+C:\Users\hyung\OneDrive\바탕 화면\CAE\obj\Debug\CAESimulation.csproj.CopyComplete
