@@ -48,6 +48,11 @@ namespace CAESimulation
             dtWind.Columns.Add(new DataColumn("Temperature", typeof(double)));
             dtWind.Columns.Add(new DataColumn("Pressure", typeof(double)));
 
+
+            DataColumn[] dtkey = new DataColumn[1];
+            dtkey[0] = dtWind.Columns["Date"];
+            dtWind.PrimaryKey = dtkey;
+
             int i = 0;
             while (!sr.EndOfStream) {
 
@@ -91,6 +96,11 @@ namespace CAESimulation
         {
             dtPower.Columns.Add(new DataColumn("Date", typeof(string)));
             dtPower.Columns.Add(new DataColumn("Power", typeof(double)));
+
+
+            DataColumn[] dtkey = new DataColumn[1];
+            dtkey[0] = dtPower.Columns["Date"];
+            dtPower.PrimaryKey = dtkey;
 
             FileStream fs = File.OpenRead(filePathPower);
             StreamReader sr = new StreamReader(fs);

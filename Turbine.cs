@@ -20,6 +20,9 @@ namespace CAESimulation
             string line = "";
             dtTb.Columns.Add(new DataColumn("V", typeof(double)));
             dtTb.Columns.Add(new DataColumn("P", typeof(double)));
+            DataColumn[] dtkey = new DataColumn[1];
+            dtkey[0] = dtTb.Columns["V"];
+            dtTb.PrimaryKey = dtkey;
             int i = 0;
             double mp = 0;
             while (!sr.EndOfStream)
