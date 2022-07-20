@@ -16,6 +16,7 @@ namespace CAESimulation
         // if (true) {
         // if 0.1 pwrusage < pwrgen : then save 잉여전력 for pwrgen - 0.1pwrusage otherwise -> Connect to local grid
         public static DataTable dtTheory;
+        public static double totalPwrGen=0;
         public Theory(Calculation cc)
         {
             dtTheory = cc.dtPwrGen.Copy();
@@ -44,7 +45,9 @@ namespace CAESimulation
                     continue;
                 }
 
-                dr["SurplusElec"] = Theory1(Double.Parse(dr["CvtPwr"].ToString()), Double.Parse(dr["PwrConsump"].ToString()), 0.05, 0.1);
+                double a = Theory1(Double.Parse(dr["CvtPwr"].ToString()), Double.Parse(dr["PwrConsump"].ToString()), 0.05, 0.1);
+                dr["SurplusElec"] = a;
+                totalPwrGen += a;
             }
         }
     }

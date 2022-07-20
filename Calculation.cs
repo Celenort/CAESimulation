@@ -15,6 +15,7 @@ namespace CAESimulation
         public DataTable dtPower;
         public DataTable dtTb;
         public DataTable dtPwrGen;
+        public static double totalPowerGen=0;
         private int pwrUsageTotal = 558338404;
         private int pwrUsageProportion = 66000;
         public void LoadDataTable(Input ip, Turbine tb)
@@ -84,7 +85,9 @@ namespace CAESimulation
             foreach (DataRow dr in dtPower.Rows)
             {
                 //dr["Power"] = Math.Round(Double.Parse(dr["Power"].ToString()) * pwrUsageProportion,3);
-                dr["Power"] = Double.Parse(dr["Power"].ToString()) * pwrUsageProportion / pwrUsageTotal;
+                double a = Double.Parse(dr["Power"].ToString()) * pwrUsageProportion / pwrUsageTotal;
+                dr["Power"] = a;
+                totalPowerGen += a;
             }
         }
         public void MergePwrgen()

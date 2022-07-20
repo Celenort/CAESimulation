@@ -15,6 +15,7 @@ namespace CAESimulation
 {
     public partial class CAESimulation : Form
     {
+        public int times = 0;
         public CAESimulation()
         {
             InitializeComponent();
@@ -44,6 +45,9 @@ namespace CAESimulation
             getGZ(ref lineSeries);
             myModel.Series.Add(lineSeries);
             this.plotView1.Model = myModel;
+            textBox1.Text = Math.Round(Calculation.totalPowerGen,3).ToString();
+            textBox2.Text = Math.Round(Theory.totalPwrGen,3).ToString();
+            textBox3.Text = Math.Round((Theory.totalPwrGen / times),3).ToString();
         }
         private void getGZ(ref LineSeries a)
         {
@@ -58,6 +62,7 @@ namespace CAESimulation
             {
                 a.Points.Add(new DataPoint(i, item));
                 i ++; // i : 1 hour
+                times = int.Parse(i.ToString());
             }
         }
         private List<double> ParseDT()
