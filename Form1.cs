@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using OxyPlot;
 using OxyPlot.WindowsForms;
 using OxyPlot.Series;
+using System.IO;
 
 namespace CAESimulation
 {
@@ -71,6 +72,142 @@ namespace CAESimulation
             double[] arrDouble = arrObj.Cast<double>().ToArray();
             List<double> arrList = arrDouble.ToList<double>();
             return arrList;
+        }
+
+
+
+        private void sourcebrowse_Click(object sender, EventArgs e)
+        {
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.csv|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+                    textBox4.Text = filePath;
+                }
+            }
+
+        }
+
+        private void turbinebrowsebtn_Click(object sender, EventArgs e)
+        {
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.csv|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+                    textBox5.Text = filePath;
+                }
+            }
+        }
+
+        private void marinebrowsebtn_Click(object sender, EventArgs e)
+        {
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.csv|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+                    textBox6.Text = filePath;
+                }
+            }
+        }
+
+        private void elecbrowsebtn_Click(object sender, EventArgs e)
+        {
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.csv|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+                    textBox7.Text = filePath;
+                }
+            }
+        }
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                textBox4.Enabled = true;
+                sourcebrowsebtn.Enabled = true;
+            }
+            else
+            {
+                textBox4.Enabled = false;
+                sourcebrowsebtn.Enabled = false;
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                textBox5.Enabled = true;
+                turbinebrowsebtn.Enabled = true;
+            }
+            else
+            {
+                textBox5.Enabled = false;
+                turbinebrowsebtn.Enabled = false;
+            }
+        }
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked)
+            {
+                textBox6.Enabled = true;
+                marinebrowsebtn.Enabled = true;
+            }
+            else
+            {
+                textBox6.Enabled = false;
+                marinebrowsebtn.Enabled = false;
+            }
+        }
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox4.Checked)
+            {
+                textBox7.Enabled = true;
+                elecbrowsebtn.Enabled = true;
+            }
+            else
+            {
+                textBox7.Enabled = false;
+                elecbrowsebtn.Enabled = false;
+            }
         }
     }
 }
