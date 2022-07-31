@@ -302,7 +302,7 @@ namespace CAESimulation
             this.input_preview.TabIndex = 26;
             this.input_preview.Text = "Preview";
             this.input_preview.UseVisualStyleBackColor = true;
-            this.input_preview.Click += new System.EventHandler(this.button3_Click);
+            this.input_preview.Click += new System.EventHandler(this.input_preview_Click);
             // 
             // input_apply
             // 
@@ -313,7 +313,7 @@ namespace CAESimulation
             this.input_apply.TabIndex = 25;
             this.input_apply.Text = "Apply";
             this.input_apply.UseVisualStyleBackColor = true;
-            this.input_apply.Click += new System.EventHandler(this.button1_Click);
+            this.input_apply.Click += new System.EventHandler(this.input_apply_Click);
             // 
             // input_browse1
             // 

@@ -11,7 +11,7 @@ namespace CAESimulation
 {
     public partial class CAESimulation : Form
     {
-        private void button1_Click(object sender, EventArgs e)
+        private void input_apply_Click(object sender, EventArgs e)
         {
             //Todo : Delete bttn1
 
@@ -27,11 +27,11 @@ namespace CAESimulation
             cc.MergePwrgen();
             Theory th = new Theory(cc);
             th.ApplyTheory();
-            input_previewdatagridview.DataSource = Theory.dtTheory;
         }
-        private void button3_Click(object sender, EventArgs e)
-        {
 
+        private void input_preview_Click(object sender, EventArgs e)
+        {
+            input_previewdatagridview.DataSource = Theory.dtTheory;
         }
     }
 
