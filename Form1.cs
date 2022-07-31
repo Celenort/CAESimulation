@@ -26,13 +26,16 @@ namespace CAESimulation
         public string turbinefiledir;
         public string tidefiledir;
         public string energyfiledir;
+        public string tempInitialDir = "C:\\Users\\hyung\\source\\repos\\Celenort\\CAESimulation\\bin\\Debug";
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Input ip = new Input(windfiledir,tidefiledir, energyfiledir);
+            //Todo : Delete bttn1
+
+            Input ip = new Input(windfiledir, tidefiledir, energyfiledir);
             ip.LoadWind();
             ip.LoadPower();
-            Turbine tb = new Turbine();
+            Turbine tb = new Turbine(turbinefiledir);
             tb.SelectModel();
             Calculation cc = new Calculation();
             cc.LoadDataTable(ip, tb);
@@ -87,8 +90,8 @@ namespace CAESimulation
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.csv|All files (*.*)|*.*";
+                openFileDialog.InitialDirectory = tempInitialDir;
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
@@ -109,8 +112,8 @@ namespace CAESimulation
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.csv|All files (*.*)|*.*";
+                openFileDialog.InitialDirectory = tempInitialDir;
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
@@ -130,8 +133,8 @@ namespace CAESimulation
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.csv|All files (*.*)|*.*";
+                openFileDialog.InitialDirectory = tempInitialDir;
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 
@@ -151,8 +154,8 @@ namespace CAESimulation
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.csv|All files (*.*)|*.*";
+                openFileDialog.InitialDirectory = tempInitialDir;
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 

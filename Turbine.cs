@@ -11,8 +11,15 @@ namespace CAESimulation
 {
     class Turbine
     {
+        public Turbine(string turbinedir)
+        {
+            filePath = turbinedir;
+        }
+
+
+
         public DataTable dtTb = new DataTable();
-        const string filePath = "Doosan_WinDS3000.txt";
+        public string filePath;
         public double maxPower;
         public void SelectModel()
         {
