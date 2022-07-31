@@ -65,3 +65,8 @@ C:\cae\obj\Debug\CAESimulation.csproj.CoreCompileInputs.cache
 C:\cae\obj\Debug\CAESimulation.csproj.CopyComplete
 C:\cae\obj\Debug\CAESimulation.exe
 C:\cae\obj\Debug\CAESimulation.pdb
+C:\Users\hyung\Source\Repos\Celenort\CAESimulation\bin\Debug\OxyPlot.dll
+C:\Users\hyung\Source\Repos\Celenort\CAESimulation\bin\Debug\OxyPlot.WindowsForms.dll
+C:\Users\hyung\Source\Repos\Celenort\CAESimulation\bin\Debug\OxyPlot.xml
+C:\Users\hyung\Source\Repos\Celenort\CAESimulation\bin\Debug\OxyPlot.WindowsForms.xml
+C:\Users\hyung\Source\Repos\Celenort\CAESimulation\obj\Debug\CAESimulation.csproj.CopyComplete

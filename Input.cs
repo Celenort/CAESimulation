@@ -9,6 +9,33 @@ using System.Text;
 
 namespace CAESimulation
 {
+    public partial class CAESimulation : Form
+    {
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //Todo : Delete bttn1
+
+            Input ip = new Input(windfiledir, tidefiledir, energyfiledir);
+            ip.LoadWind();
+            ip.LoadPower();
+            Turbine tb = new Turbine(turbinefiledir);
+            tb.SelectModel();
+            Calculation cc = new Calculation();
+            cc.LoadDataTable(ip, tb);
+            cc.ConvertGlobalToLocalUsage();
+            DataTable dt = cc.VelocityToPower(ip.dtWind, tb.dtTb);
+            cc.MergePwrgen();
+            Theory th = new Theory(cc);
+            th.ApplyTheory();
+            input_previewdatagridview.DataSource = Theory.dtTheory;
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+
+
     class Input
     {
         public DataTable dtWind = new DataTable();

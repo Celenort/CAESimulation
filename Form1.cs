@@ -28,24 +28,7 @@ namespace CAESimulation
         public string energyfiledir;
         public string tempInitialDir = "C:\\Users\\hyung\\source\\repos\\Celenort\\CAESimulation\\bin\\Debug";
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //Todo : Delete bttn1
 
-            Input ip = new Input(windfiledir, tidefiledir, energyfiledir);
-            ip.LoadWind();
-            ip.LoadPower();
-            Turbine tb = new Turbine(turbinefiledir);
-            tb.SelectModel();
-            Calculation cc = new Calculation();
-            cc.LoadDataTable(ip, tb);
-            cc.ConvertGlobalToLocalUsage();
-            DataTable dt = cc.VelocityToPower(ip.dtWind, tb.dtTb);
-            cc.MergePwrgen();
-            Theory th = new Theory(cc);
-            th.ApplyTheory();
-            dataGridView1.DataSource = Theory.dtTheory;
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -99,7 +82,7 @@ namespace CAESimulation
                 {
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
-                    textBox4.Text = filePath;
+                    input_dirtxtbox1.Text = filePath;
                     windfiledir = filePath;
                 }
             }
@@ -121,7 +104,7 @@ namespace CAESimulation
                 {
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
-                    textBox5.Text = filePath;
+                    input_dirtxtbox2.Text = filePath;
                     turbinefiledir = filePath;
                 }
             }
@@ -142,7 +125,7 @@ namespace CAESimulation
                 {
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
-                    textBox6.Text = filePath;
+                    input_dirtxtbox3.Text = filePath;
                     tidefiledir = filePath;
                 }
             }
@@ -163,73 +146,73 @@ namespace CAESimulation
                 {
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
-                    textBox7.Text = filePath;
+                    input_dirtxtbox4.Text = filePath;
                     energyfiledir = filePath;
                 }
             }
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
+            if (input_checkbox1.Checked)
             {
-                textBox4.Enabled = true;
-                sourcebrowsebtn.Enabled = true;
+                input_dirtxtbox1.Enabled = true;
+                input_browse1.Enabled = true;
             }
             else
             {
-                textBox4.Enabled = false;
-                sourcebrowsebtn.Enabled = false;
+                input_dirtxtbox1.Enabled = false;
+                input_browse1.Enabled = false;
             }
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox2.Checked)
+            if (input_checkbox2.Checked)
             {
-                textBox5.Enabled = true;
-                turbinebrowsebtn.Enabled = true;
+                input_dirtxtbox2.Enabled = true;
+                input_browse2.Enabled = true;
             }
             else
             {
-                textBox5.Enabled = false;
-                turbinebrowsebtn.Enabled = false;
+                input_dirtxtbox2.Enabled = false;
+                input_browse2.Enabled = false;
             }
         }
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox3.Checked)
+            if (input_checkbox3.Checked)
             {
-                textBox6.Enabled = true;
-                marinebrowsebtn.Enabled = true;
+                input_dirtxtbox3.Enabled = true;
+                input_browse3.Enabled = true;
             }
             else
             {
-                textBox6.Enabled = false;
-                marinebrowsebtn.Enabled = false;
+                input_dirtxtbox3.Enabled = false;
+                input_browse3.Enabled = false;
             }
         }
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox4.Checked)
+            if (input_checkbox4.Checked)
             {
-                textBox7.Enabled = true;
-                elecbrowsebtn.Enabled = true;
+                input_dirtxtbox4.Enabled = true;
+                input_browse4.Enabled = true;
             }
             else
             {
-                textBox7.Enabled = false;
-                elecbrowsebtn.Enabled = false;
+                input_dirtxtbox4.Enabled = false;
+                input_browse4.Enabled = false;
             }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            monthCalendar1.SelectionStart = dateTimePicker1.Value;
+            input_monthCalendar1.SelectionStart = input_dateTimePicker1.Value;
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            monthCalendar2.SelectionStart = dateTimePicker1.Value;
+            input_monthCalendar2.SelectionStart = input_dateTimePicker1.Value;
         }
     }
 }

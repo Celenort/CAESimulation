@@ -65,7 +65,9 @@
     </Compile>
     <Compile Include="Arrangement.cs" />
     <Compile Include="Turbine.cs" />
-    <Compile Include="Input.cs" />
+    <Compile Include="Input.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

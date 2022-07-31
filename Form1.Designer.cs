@@ -30,32 +30,36 @@ namespace CAESimulation
         private void InitializeComponent()
         {
             this.TabControl = new System.Windows.Forms.TabControl();
-            this.Files = new System.Windows.Forms.TabPage();
+            this.Input = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.input_previewdatagridview = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.label8 = new System.Windows.Forms.Label();
-            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.input_labelselectdate = new System.Windows.Forms.Label();
+            this.input_monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.input_labelfromto = new System.Windows.Forms.Label();
+            this.input_monthCalendar2 = new System.Windows.Forms.MonthCalendar();
+            this.input_labelcalender = new System.Windows.Forms.Label();
+            this.input_labelstrt = new System.Windows.Forms.Label();
+            this.input_labelend = new System.Windows.Forms.Label();
+            this.input_totxtbox = new System.Windows.Forms.TextBox();
+            this.input_dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.input_fromtxtbox = new System.Windows.Forms.TextBox();
+            this.input_dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.sourcebrowsebtn = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.turbinebrowsebtn = new System.Windows.Forms.Button();
-            this.marinebrowsebtn = new System.Windows.Forms.Button();
-            this.elecbrowsebtn = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.input_preview = new System.Windows.Forms.Button();
+            this.input_apply = new System.Windows.Forms.Button();
+            this.input_browse1 = new System.Windows.Forms.Button();
+            this.input_dirtxtbox1 = new System.Windows.Forms.TextBox();
+            this.input_dirtxtbox2 = new System.Windows.Forms.TextBox();
+            this.input_dirtxtbox3 = new System.Windows.Forms.TextBox();
+            this.input_dirtxtbox4 = new System.Windows.Forms.TextBox();
+            this.input_browse2 = new System.Windows.Forms.Button();
+            this.input_browse3 = new System.Windows.Forms.Button();
+            this.input_browse4 = new System.Windows.Forms.Button();
+            this.input_checkbox1 = new System.Windows.Forms.CheckBox();
+            this.input_checkbox2 = new System.Windows.Forms.CheckBox();
+            this.input_checkbox3 = new System.Windows.Forms.CheckBox();
+            this.input_checkbox4 = new System.Windows.Forms.CheckBox();
             this.Turbine = new System.Windows.Forms.TabPage();
             this.plotView2 = new OxyPlot.WindowsForms.PlotView();
             this.Losses = new System.Windows.Forms.TabPage();
@@ -70,22 +74,21 @@ namespace CAESimulation
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.plotView1 = new OxyPlot.WindowsForms.PlotView();
-            this.button1 = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
-            this.Files.SuspendLayout();
+            this.Input.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.input_previewdatagridview)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.Turbine.SuspendLayout();
             this.Tides.SuspendLayout();
             this.Result.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl
             // 
-            this.TabControl.Controls.Add(this.Files);
+            this.TabControl.Controls.Add(this.Input);
             this.TabControl.Controls.Add(this.Turbine);
             this.TabControl.Controls.Add(this.Losses);
             this.TabControl.Controls.Add(this.Uncertainties);
@@ -100,308 +103,353 @@ namespace CAESimulation
             this.TabControl.Multiline = true;
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(1010, 701);
+            this.TabControl.Size = new System.Drawing.Size(1182, 753);
             this.TabControl.TabIndex = 10;
             // 
-            // Files
+            // Input
             // 
-            this.Files.Controls.Add(this.groupBox2);
-            this.Files.Controls.Add(this.groupBox1);
-            this.Files.Location = new System.Drawing.Point(4, 25);
-            this.Files.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Files.Name = "Files";
-            this.Files.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Files.Size = new System.Drawing.Size(1002, 672);
-            this.Files.TabIndex = 0;
-            this.Files.Text = "Files";
-            this.Files.UseVisualStyleBackColor = true;
+            this.Input.Controls.Add(this.groupBox3);
+            this.Input.Controls.Add(this.groupBox2);
+            this.Input.Controls.Add(this.groupBox1);
+            this.Input.Location = new System.Drawing.Point(4, 25);
+            this.Input.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Input.Name = "Input";
+            this.Input.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Input.Size = new System.Drawing.Size(1174, 724);
+            this.Input.TabIndex = 0;
+            this.Input.Text = "Input";
+            this.Input.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.input_previewdatagridview);
+            this.groupBox3.Location = new System.Drawing.Point(663, 17);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(503, 652);
+            this.groupBox3.TabIndex = 26;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Preview";
+            // 
+            // input_previewdatagridview
+            // 
+            this.input_previewdatagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.input_previewdatagridview.Location = new System.Drawing.Point(6, 19);
+            this.input_previewdatagridview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_previewdatagridview.Name = "input_previewdatagridview";
+            this.input_previewdatagridview.RowHeadersWidth = 51;
+            this.input_previewdatagridview.RowTemplate.Height = 23;
+            this.input_previewdatagridview.Size = new System.Drawing.Size(497, 633);
+            this.input_previewdatagridview.TabIndex = 5;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.monthCalendar1);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.monthCalendar2);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBox9);
-            this.groupBox2.Controls.Add(this.dateTimePicker1);
-            this.groupBox2.Controls.Add(this.textBox8);
-            this.groupBox2.Controls.Add(this.dateTimePicker2);
-            this.groupBox2.Location = new System.Drawing.Point(24, 256);
+            this.groupBox2.Controls.Add(this.input_labelselectdate);
+            this.groupBox2.Controls.Add(this.input_monthCalendar1);
+            this.groupBox2.Controls.Add(this.input_labelfromto);
+            this.groupBox2.Controls.Add(this.input_monthCalendar2);
+            this.groupBox2.Controls.Add(this.input_labelcalender);
+            this.groupBox2.Controls.Add(this.input_labelstrt);
+            this.groupBox2.Controls.Add(this.input_labelend);
+            this.groupBox2.Controls.Add(this.input_totxtbox);
+            this.groupBox2.Controls.Add(this.input_dateTimePicker1);
+            this.groupBox2.Controls.Add(this.input_fromtxtbox);
+            this.groupBox2.Controls.Add(this.input_dateTimePicker2);
+            this.groupBox2.Location = new System.Drawing.Point(9, 317);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(667, 352);
+            this.groupBox2.Size = new System.Drawing.Size(648, 352);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Date";
             // 
-            // label6
+            // input_labelselectdate
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 56);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 15);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "Select Date";
+            this.input_labelselectdate.AutoSize = true;
+            this.input_labelselectdate.Location = new System.Drawing.Point(13, 56);
+            this.input_labelselectdate.Name = "input_labelselectdate";
+            this.input_labelselectdate.Size = new System.Drawing.Size(83, 15);
+            this.input_labelselectdate.TabIndex = 20;
+            this.input_labelselectdate.Text = "Select Date";
             // 
-            // monthCalendar1
+            // input_monthCalendar1
             // 
-            this.monthCalendar1.Enabled = false;
-            this.monthCalendar1.Location = new System.Drawing.Point(127, 90);
-            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.monthCalendar1.MaxSelectionCount = 1;
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.ShowToday = false;
-            this.monthCalendar1.ShowTodayCircle = false;
-            this.monthCalendar1.TabIndex = 12;
-            this.monthCalendar1.TrailingForeColor = System.Drawing.SystemColors.Highlight;
+            this.input_monthCalendar1.Enabled = false;
+            this.input_monthCalendar1.Location = new System.Drawing.Point(102, 90);
+            this.input_monthCalendar1.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.input_monthCalendar1.MaxSelectionCount = 1;
+            this.input_monthCalendar1.Name = "input_monthCalendar1";
+            this.input_monthCalendar1.ShowToday = false;
+            this.input_monthCalendar1.ShowTodayCircle = false;
+            this.input_monthCalendar1.TabIndex = 12;
+            this.input_monthCalendar1.TrailingForeColor = System.Drawing.SystemColors.Highlight;
             // 
-            // label8
+            // input_labelfromto
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 312);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 15);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "From-To";
+            this.input_labelfromto.AutoSize = true;
+            this.input_labelfromto.Location = new System.Drawing.Point(13, 312);
+            this.input_labelfromto.Name = "input_labelfromto";
+            this.input_labelfromto.Size = new System.Drawing.Size(64, 15);
+            this.input_labelfromto.TabIndex = 22;
+            this.input_labelfromto.Text = "From-To";
             // 
-            // monthCalendar2
+            // input_monthCalendar2
             // 
-            this.monthCalendar2.Enabled = false;
-            this.monthCalendar2.Location = new System.Drawing.Point(398, 90);
-            this.monthCalendar2.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.monthCalendar2.MaxSelectionCount = 1;
-            this.monthCalendar2.Name = "monthCalendar2";
-            this.monthCalendar2.ShowToday = false;
-            this.monthCalendar2.ShowTodayCircle = false;
-            this.monthCalendar2.TabIndex = 13;
-            this.monthCalendar2.TrailingForeColor = System.Drawing.SystemColors.Highlight;
+            this.input_monthCalendar2.Enabled = false;
+            this.input_monthCalendar2.Location = new System.Drawing.Point(373, 90);
+            this.input_monthCalendar2.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.input_monthCalendar2.MaxSelectionCount = 1;
+            this.input_monthCalendar2.Name = "input_monthCalendar2";
+            this.input_monthCalendar2.ShowToday = false;
+            this.input_monthCalendar2.ShowTodayCircle = false;
+            this.input_monthCalendar2.TabIndex = 13;
+            this.input_monthCalendar2.TrailingForeColor = System.Drawing.SystemColors.Highlight;
             // 
-            // label7
+            // input_labelcalender
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 186);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 15);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "Calender";
+            this.input_labelcalender.AutoSize = true;
+            this.input_labelcalender.Location = new System.Drawing.Point(13, 186);
+            this.input_labelcalender.Name = "input_labelcalender";
+            this.input_labelcalender.Size = new System.Drawing.Size(64, 15);
+            this.input_labelcalender.TabIndex = 21;
+            this.input_labelcalender.Text = "Calender";
             // 
-            // label4
+            // input_labelstrt
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(125, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 15);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Start";
+            this.input_labelstrt.AutoSize = true;
+            this.input_labelstrt.Location = new System.Drawing.Point(100, 22);
+            this.input_labelstrt.Name = "input_labelstrt";
+            this.input_labelstrt.Size = new System.Drawing.Size(37, 15);
+            this.input_labelstrt.TabIndex = 14;
+            this.input_labelstrt.Text = "Start";
             // 
-            // label5
+            // input_labelend
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(395, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 15);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "End";
+            this.input_labelend.AutoSize = true;
+            this.input_labelend.Location = new System.Drawing.Point(370, 22);
+            this.input_labelend.Name = "input_labelend";
+            this.input_labelend.Size = new System.Drawing.Size(32, 15);
+            this.input_labelend.TabIndex = 15;
+            this.input_labelend.Text = "End";
             // 
-            // textBox9
+            // input_totxtbox
             // 
-            this.textBox9.Location = new System.Drawing.Point(398, 309);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(251, 25);
-            this.textBox9.TabIndex = 19;
+            this.input_totxtbox.Location = new System.Drawing.Point(373, 309);
+            this.input_totxtbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_totxtbox.Name = "input_totxtbox";
+            this.input_totxtbox.Size = new System.Drawing.Size(251, 25);
+            this.input_totxtbox.TabIndex = 19;
             // 
-            // dateTimePicker1
+            // input_dateTimePicker1
             // 
-            this.dateTimePicker1.AllowDrop = true;
-            this.dateTimePicker1.Location = new System.Drawing.Point(127, 49);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(247, 25);
-            this.dateTimePicker1.TabIndex = 16;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.input_dateTimePicker1.AllowDrop = true;
+            this.input_dateTimePicker1.Location = new System.Drawing.Point(102, 49);
+            this.input_dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_dateTimePicker1.Name = "input_dateTimePicker1";
+            this.input_dateTimePicker1.Size = new System.Drawing.Size(247, 25);
+            this.input_dateTimePicker1.TabIndex = 16;
+            this.input_dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
-            // textBox8
+            // input_fromtxtbox
             // 
-            this.textBox8.Location = new System.Drawing.Point(128, 309);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(245, 25);
-            this.textBox8.TabIndex = 18;
+            this.input_fromtxtbox.Location = new System.Drawing.Point(103, 309);
+            this.input_fromtxtbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_fromtxtbox.Name = "input_fromtxtbox";
+            this.input_fromtxtbox.Size = new System.Drawing.Size(245, 25);
+            this.input_fromtxtbox.TabIndex = 18;
             // 
-            // dateTimePicker2
+            // input_dateTimePicker2
             // 
-            this.dateTimePicker2.AllowDrop = true;
-            this.dateTimePicker2.Location = new System.Drawing.Point(398, 49);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(251, 25);
-            this.dateTimePicker2.TabIndex = 17;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            this.input_dateTimePicker2.AllowDrop = true;
+            this.input_dateTimePicker2.Location = new System.Drawing.Point(373, 49);
+            this.input_dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_dateTimePicker2.Name = "input_dateTimePicker2";
+            this.input_dateTimePicker2.Size = new System.Drawing.Size(251, 25);
+            this.input_dateTimePicker2.TabIndex = 17;
+            this.input_dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.sourcebrowsebtn);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox6);
-            this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.turbinebrowsebtn);
-            this.groupBox1.Controls.Add(this.marinebrowsebtn);
-            this.groupBox1.Controls.Add(this.elecbrowsebtn);
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.checkBox3);
-            this.groupBox1.Controls.Add(this.checkBox4);
-            this.groupBox1.Location = new System.Drawing.Point(24, 31);
+            this.groupBox1.Controls.Add(this.input_preview);
+            this.groupBox1.Controls.Add(this.input_apply);
+            this.groupBox1.Controls.Add(this.input_browse1);
+            this.groupBox1.Controls.Add(this.input_dirtxtbox1);
+            this.groupBox1.Controls.Add(this.input_dirtxtbox2);
+            this.groupBox1.Controls.Add(this.input_dirtxtbox3);
+            this.groupBox1.Controls.Add(this.input_dirtxtbox4);
+            this.groupBox1.Controls.Add(this.input_browse2);
+            this.groupBox1.Controls.Add(this.input_browse3);
+            this.groupBox1.Controls.Add(this.input_browse4);
+            this.groupBox1.Controls.Add(this.input_checkbox1);
+            this.groupBox1.Controls.Add(this.input_checkbox2);
+            this.groupBox1.Controls.Add(this.input_checkbox3);
+            this.groupBox1.Controls.Add(this.input_checkbox4);
+            this.groupBox1.Location = new System.Drawing.Point(9, 8);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(947, 217);
+            this.groupBox1.Size = new System.Drawing.Size(639, 301);
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Files";
             // 
-            // sourcebrowsebtn
+            // input_preview
             // 
-            this.sourcebrowsebtn.Enabled = false;
-            this.sourcebrowsebtn.Location = new System.Drawing.Point(797, 25);
-            this.sourcebrowsebtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.sourcebrowsebtn.Name = "sourcebrowsebtn";
-            this.sourcebrowsebtn.Size = new System.Drawing.Size(86, 26);
-            this.sourcebrowsebtn.TabIndex = 4;
-            this.sourcebrowsebtn.Text = "Browse";
-            this.sourcebrowsebtn.UseVisualStyleBackColor = true;
-            this.sourcebrowsebtn.Click += new System.EventHandler(this.sourcebrowse_Click);
+            this.input_preview.Location = new System.Drawing.Point(518, 248);
+            this.input_preview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_preview.Name = "input_preview";
+            this.input_preview.Size = new System.Drawing.Size(86, 29);
+            this.input_preview.TabIndex = 26;
+            this.input_preview.Text = "Preview";
+            this.input_preview.UseVisualStyleBackColor = true;
+            this.input_preview.Click += new System.EventHandler(this.button3_Click);
             // 
-            // textBox4
+            // input_apply
             // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(231, 25);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(554, 25);
-            this.textBox4.TabIndex = 0;
+            this.input_apply.Location = new System.Drawing.Point(415, 248);
+            this.input_apply.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_apply.Name = "input_apply";
+            this.input_apply.Size = new System.Drawing.Size(91, 29);
+            this.input_apply.TabIndex = 25;
+            this.input_apply.Text = "Apply";
+            this.input_apply.UseVisualStyleBackColor = true;
+            this.input_apply.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox5
+            // input_browse1
             // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(231, 59);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(554, 25);
-            this.textBox5.TabIndex = 1;
+            this.input_browse1.Enabled = false;
+            this.input_browse1.Location = new System.Drawing.Point(518, 25);
+            this.input_browse1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_browse1.Name = "input_browse1";
+            this.input_browse1.Size = new System.Drawing.Size(86, 26);
+            this.input_browse1.TabIndex = 4;
+            this.input_browse1.Text = "Browse";
+            this.input_browse1.UseVisualStyleBackColor = true;
+            this.input_browse1.Click += new System.EventHandler(this.sourcebrowse_Click);
             // 
-            // textBox6
+            // input_dirtxtbox1
             // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Location = new System.Drawing.Point(231, 92);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(554, 25);
-            this.textBox6.TabIndex = 2;
+            this.input_dirtxtbox1.Enabled = false;
+            this.input_dirtxtbox1.Location = new System.Drawing.Point(231, 25);
+            this.input_dirtxtbox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_dirtxtbox1.Name = "input_dirtxtbox1";
+            this.input_dirtxtbox1.ReadOnly = true;
+            this.input_dirtxtbox1.Size = new System.Drawing.Size(275, 25);
+            this.input_dirtxtbox1.TabIndex = 0;
             // 
-            // textBox7
+            // input_dirtxtbox2
             // 
-            this.textBox7.Enabled = false;
-            this.textBox7.Location = new System.Drawing.Point(231, 126);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(554, 25);
-            this.textBox7.TabIndex = 3;
+            this.input_dirtxtbox2.Enabled = false;
+            this.input_dirtxtbox2.Location = new System.Drawing.Point(231, 82);
+            this.input_dirtxtbox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_dirtxtbox2.Name = "input_dirtxtbox2";
+            this.input_dirtxtbox2.ReadOnly = true;
+            this.input_dirtxtbox2.Size = new System.Drawing.Size(275, 25);
+            this.input_dirtxtbox2.TabIndex = 1;
             // 
-            // turbinebrowsebtn
+            // input_dirtxtbox3
             // 
-            this.turbinebrowsebtn.Enabled = false;
-            this.turbinebrowsebtn.Location = new System.Drawing.Point(797, 59);
-            this.turbinebrowsebtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.turbinebrowsebtn.Name = "turbinebrowsebtn";
-            this.turbinebrowsebtn.Size = new System.Drawing.Size(86, 26);
-            this.turbinebrowsebtn.TabIndex = 5;
-            this.turbinebrowsebtn.Text = "Browse";
-            this.turbinebrowsebtn.UseVisualStyleBackColor = true;
-            this.turbinebrowsebtn.Click += new System.EventHandler(this.turbinebrowsebtn_Click);
+            this.input_dirtxtbox3.Enabled = false;
+            this.input_dirtxtbox3.Location = new System.Drawing.Point(231, 141);
+            this.input_dirtxtbox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_dirtxtbox3.Name = "input_dirtxtbox3";
+            this.input_dirtxtbox3.ReadOnly = true;
+            this.input_dirtxtbox3.Size = new System.Drawing.Size(275, 25);
+            this.input_dirtxtbox3.TabIndex = 2;
             // 
-            // marinebrowsebtn
+            // input_dirtxtbox4
             // 
-            this.marinebrowsebtn.Enabled = false;
-            this.marinebrowsebtn.Location = new System.Drawing.Point(797, 92);
-            this.marinebrowsebtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.marinebrowsebtn.Name = "marinebrowsebtn";
-            this.marinebrowsebtn.Size = new System.Drawing.Size(86, 26);
-            this.marinebrowsebtn.TabIndex = 6;
-            this.marinebrowsebtn.Text = "Browse";
-            this.marinebrowsebtn.UseVisualStyleBackColor = true;
-            this.marinebrowsebtn.Click += new System.EventHandler(this.marinebrowsebtn_Click);
+            this.input_dirtxtbox4.Enabled = false;
+            this.input_dirtxtbox4.Location = new System.Drawing.Point(231, 202);
+            this.input_dirtxtbox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_dirtxtbox4.Name = "input_dirtxtbox4";
+            this.input_dirtxtbox4.ReadOnly = true;
+            this.input_dirtxtbox4.Size = new System.Drawing.Size(275, 25);
+            this.input_dirtxtbox4.TabIndex = 3;
             // 
-            // elecbrowsebtn
+            // input_browse2
             // 
-            this.elecbrowsebtn.Enabled = false;
-            this.elecbrowsebtn.Location = new System.Drawing.Point(797, 126);
-            this.elecbrowsebtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.elecbrowsebtn.Name = "elecbrowsebtn";
-            this.elecbrowsebtn.Size = new System.Drawing.Size(86, 26);
-            this.elecbrowsebtn.TabIndex = 7;
-            this.elecbrowsebtn.Text = "Browse";
-            this.elecbrowsebtn.UseVisualStyleBackColor = true;
-            this.elecbrowsebtn.Click += new System.EventHandler(this.elecbrowsebtn_Click);
+            this.input_browse2.Enabled = false;
+            this.input_browse2.Location = new System.Drawing.Point(518, 82);
+            this.input_browse2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_browse2.Name = "input_browse2";
+            this.input_browse2.Size = new System.Drawing.Size(86, 26);
+            this.input_browse2.TabIndex = 5;
+            this.input_browse2.Text = "Browse";
+            this.input_browse2.UseVisualStyleBackColor = true;
+            this.input_browse2.Click += new System.EventHandler(this.turbinebrowsebtn_Click);
             // 
-            // checkBox1
+            // input_browse3
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(15, 28);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(181, 19);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Wind source file (*.txt)";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.input_browse3.Enabled = false;
+            this.input_browse3.Location = new System.Drawing.Point(518, 141);
+            this.input_browse3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_browse3.Name = "input_browse3";
+            this.input_browse3.Size = new System.Drawing.Size(86, 26);
+            this.input_browse3.TabIndex = 6;
+            this.input_browse3.Text = "Browse";
+            this.input_browse3.UseVisualStyleBackColor = true;
+            this.input_browse3.Click += new System.EventHandler(this.marinebrowsebtn_Click);
             // 
-            // checkBox2
+            // input_browse4
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(15, 60);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(206, 19);
-            this.checkBox2.TabIndex = 9;
-            this.checkBox2.Text = "Custom turbine data (*.txt)";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.input_browse4.Enabled = false;
+            this.input_browse4.Location = new System.Drawing.Point(518, 202);
+            this.input_browse4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_browse4.Name = "input_browse4";
+            this.input_browse4.Size = new System.Drawing.Size(86, 26);
+            this.input_browse4.TabIndex = 7;
+            this.input_browse4.Text = "Browse";
+            this.input_browse4.UseVisualStyleBackColor = true;
+            this.input_browse4.Click += new System.EventHandler(this.elecbrowsebtn_Click);
             // 
-            // checkBox3
+            // input_checkbox1
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(15, 94);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(153, 19);
-            this.checkBox3.TabIndex = 10;
-            this.checkBox3.Text = "Wave data (*.csv)";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.input_checkbox1.AutoSize = true;
+            this.input_checkbox1.Location = new System.Drawing.Point(15, 28);
+            this.input_checkbox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_checkbox1.Name = "input_checkbox1";
+            this.input_checkbox1.Size = new System.Drawing.Size(181, 19);
+            this.input_checkbox1.TabIndex = 8;
+            this.input_checkbox1.Text = "Wind source file (*.txt)";
+            this.input_checkbox1.UseVisualStyleBackColor = true;
+            this.input_checkbox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // checkBox4
+            // input_checkbox2
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(15, 128);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(177, 19);
-            this.checkBox4.TabIndex = 11;
-            this.checkBox4.Text = "Electricity data (*.csv)";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            this.input_checkbox2.AutoSize = true;
+            this.input_checkbox2.Location = new System.Drawing.Point(15, 83);
+            this.input_checkbox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_checkbox2.Name = "input_checkbox2";
+            this.input_checkbox2.Size = new System.Drawing.Size(206, 19);
+            this.input_checkbox2.TabIndex = 9;
+            this.input_checkbox2.Text = "Custom turbine data (*.txt)";
+            this.input_checkbox2.UseVisualStyleBackColor = true;
+            this.input_checkbox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // input_checkbox3
+            // 
+            this.input_checkbox3.AutoSize = true;
+            this.input_checkbox3.Location = new System.Drawing.Point(15, 141);
+            this.input_checkbox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_checkbox3.Name = "input_checkbox3";
+            this.input_checkbox3.Size = new System.Drawing.Size(153, 19);
+            this.input_checkbox3.TabIndex = 10;
+            this.input_checkbox3.Text = "Wave data (*.csv)";
+            this.input_checkbox3.UseVisualStyleBackColor = true;
+            this.input_checkbox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
+            // input_checkbox4
+            // 
+            this.input_checkbox4.AutoSize = true;
+            this.input_checkbox4.Location = new System.Drawing.Point(15, 204);
+            this.input_checkbox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.input_checkbox4.Name = "input_checkbox4";
+            this.input_checkbox4.Size = new System.Drawing.Size(177, 19);
+            this.input_checkbox4.TabIndex = 11;
+            this.input_checkbox4.Text = "Electricity data (*.csv)";
+            this.input_checkbox4.UseVisualStyleBackColor = true;
+            this.input_checkbox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // Turbine
             // 
@@ -410,7 +458,7 @@ namespace CAESimulation
             this.Turbine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Turbine.Name = "Turbine";
             this.Turbine.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Turbine.Size = new System.Drawing.Size(1002, 672);
+            this.Turbine.Size = new System.Drawing.Size(1174, 724);
             this.Turbine.TabIndex = 1;
             this.Turbine.Text = "Turbine";
             this.Turbine.UseVisualStyleBackColor = true;
@@ -434,7 +482,7 @@ namespace CAESimulation
             this.Losses.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Losses.Name = "Losses";
             this.Losses.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Losses.Size = new System.Drawing.Size(1002, 672);
+            this.Losses.Size = new System.Drawing.Size(1174, 724);
             this.Losses.TabIndex = 2;
             this.Losses.Text = "Losses";
             this.Losses.UseVisualStyleBackColor = true;
@@ -445,7 +493,7 @@ namespace CAESimulation
             this.Uncertainties.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Uncertainties.Name = "Uncertainties";
             this.Uncertainties.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Uncertainties.Size = new System.Drawing.Size(1002, 672);
+            this.Uncertainties.Size = new System.Drawing.Size(1174, 724);
             this.Uncertainties.TabIndex = 3;
             this.Uncertainties.Text = "Uncertainties";
             this.Uncertainties.UseVisualStyleBackColor = true;
@@ -456,7 +504,7 @@ namespace CAESimulation
             this.Tides.Location = new System.Drawing.Point(4, 25);
             this.Tides.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Tides.Name = "Tides";
-            this.Tides.Size = new System.Drawing.Size(1002, 672);
+            this.Tides.Size = new System.Drawing.Size(1174, 724);
             this.Tides.TabIndex = 4;
             this.Tides.Text = "Tides";
             this.Tides.UseVisualStyleBackColor = true;
@@ -483,12 +531,11 @@ namespace CAESimulation
             this.Result.Controls.Add(this.button2);
             this.Result.Controls.Add(this.textBox1);
             this.Result.Controls.Add(this.label1);
-            this.Result.Controls.Add(this.dataGridView1);
             this.Result.Controls.Add(this.plotView1);
             this.Result.Location = new System.Drawing.Point(4, 25);
             this.Result.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Result.Name = "Result";
-            this.Result.Size = new System.Drawing.Size(1002, 672);
+            this.Result.Size = new System.Drawing.Size(1174, 724);
             this.Result.TabIndex = 5;
             this.Result.Text = "Result";
             this.Result.UseVisualStyleBackColor = true;
@@ -558,17 +605,6 @@ namespace CAESimulation
             this.label1.TabIndex = 12;
             this.label1.Text = "총 전력생산량";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 229);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(983, 165);
-            this.dataGridView1.TabIndex = 4;
-            // 
             // plotView1
             // 
             this.plotView1.Location = new System.Drawing.Point(9, 14);
@@ -582,27 +618,19 @@ namespace CAESimulation
             this.plotView1.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.plotView1.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(797, 160);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 29);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "LoadData";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // CAESimulation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 701);
+            this.ClientSize = new System.Drawing.Size(1182, 753);
             this.Controls.Add(this.TabControl);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CAESimulation";
             this.Text = "CAESimulation";
             this.TabControl.ResumeLayout(false);
-            this.Files.ResumeLayout(false);
+            this.Input.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.input_previewdatagridview)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -611,42 +639,41 @@ namespace CAESimulation
             this.Tides.ResumeLayout(false);
             this.Result.ResumeLayout(false);
             this.Result.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.TabControl TabControl;
-        private System.Windows.Forms.TabPage Files;
+        private System.Windows.Forms.TabPage Input;
         private System.Windows.Forms.TabPage Turbine;
         private System.Windows.Forms.TabPage Losses;
         private System.Windows.Forms.TabPage Uncertainties;
         private System.Windows.Forms.TabPage Tides;
         private System.Windows.Forms.TabPage Result;
-        private System.Windows.Forms.Button elecbrowsebtn;
-        private System.Windows.Forms.Button marinebrowsebtn;
-        private System.Windows.Forms.Button turbinebrowsebtn;
-        private System.Windows.Forms.Button sourcebrowsebtn;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.MonthCalendar monthCalendar2;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Button input_browse4;
+        private System.Windows.Forms.Button input_browse3;
+        private System.Windows.Forms.Button input_browse2;
+        private System.Windows.Forms.Button input_browse1;
+        private System.Windows.Forms.TextBox input_dirtxtbox4;
+        private System.Windows.Forms.TextBox input_dirtxtbox3;
+        private System.Windows.Forms.TextBox input_dirtxtbox2;
+        private System.Windows.Forms.TextBox input_dirtxtbox1;
+        private System.Windows.Forms.CheckBox input_checkbox4;
+        private System.Windows.Forms.CheckBox input_checkbox3;
+        private System.Windows.Forms.CheckBox input_checkbox2;
+        private System.Windows.Forms.CheckBox input_checkbox1;
+        private System.Windows.Forms.DateTimePicker input_dateTimePicker1;
+        private System.Windows.Forms.Label input_labelend;
+        private System.Windows.Forms.Label input_labelstrt;
+        private System.Windows.Forms.MonthCalendar input_monthCalendar2;
+        private System.Windows.Forms.MonthCalendar input_monthCalendar1;
+        private System.Windows.Forms.Label input_labelfromto;
+        private System.Windows.Forms.Label input_labelcalender;
+        private System.Windows.Forms.Label input_labelselectdate;
+        private System.Windows.Forms.TextBox input_totxtbox;
+        private System.Windows.Forms.TextBox input_fromtxtbox;
+        private System.Windows.Forms.DateTimePicker input_dateTimePicker2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private OxyPlot.WindowsForms.PlotView plotView1;
@@ -659,8 +686,10 @@ namespace CAESimulation
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button input_apply;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView input_previewdatagridview;
+        private System.Windows.Forms.Button input_preview;
     }
 }
 
