@@ -22,9 +22,14 @@ namespace CAESimulation
             InitializeComponent();
         }
 
+        public string windfiledir;
+        public string turbinefiledir;
+        public string tidefiledir;
+        public string energyfiledir;
+
         private void button1_Click(object sender, EventArgs e)
         {
-            Input ip = new Input();
+            Input ip = new Input(windfiledir,tidefiledir, energyfiledir);
             ip.LoadWind();
             ip.LoadPower();
             Turbine tb = new Turbine();
@@ -92,6 +97,7 @@ namespace CAESimulation
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
                     textBox4.Text = filePath;
+                    windfiledir = filePath;
                 }
             }
 
@@ -113,6 +119,7 @@ namespace CAESimulation
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
                     textBox5.Text = filePath;
+                    turbinefiledir = filePath;
                 }
             }
         }
@@ -133,6 +140,7 @@ namespace CAESimulation
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
                     textBox6.Text = filePath;
+                    tidefiledir = filePath;
                 }
             }
         }
@@ -153,6 +161,7 @@ namespace CAESimulation
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
                     textBox7.Text = filePath;
+                    energyfiledir = filePath;
                 }
             }
         }
@@ -208,6 +217,16 @@ namespace CAESimulation
                 textBox7.Enabled = false;
                 elecbrowsebtn.Enabled = false;
             }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            monthCalendar1.SelectionStart = dateTimePicker1.Value;
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            monthCalendar2.SelectionStart = dateTimePicker1.Value;
         }
     }
 }

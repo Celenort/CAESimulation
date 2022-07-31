@@ -14,11 +14,14 @@ namespace CAESimulation
         public DataTable dtWind = new DataTable();
         public DataTable dtPower = new DataTable();
         Dictionary<int, string> hourdict;
-        const string filePathWind = "ERA_5_Lat33.500000_Long126.000000_100m.txt";
-        const string filePathPower = "한국전력거래소_시간별 전력수요량_20211231.csv";
+        public string filePathWind = "ERA_5_Lat33.500000_Long126.000000_100m.txt";
+        public string filePathPower = "한국전력거래소_시간별 전력수요량_20211231.csv";
 
-        public Input()
+        public Input(string wind, string tide, string energy)
         {
+            filePathWind = wind;
+            filePathPower = energy;
+
             hourdict = new Dictionary<int, string>();
             for (int i =0;i<25;i++)
             {
