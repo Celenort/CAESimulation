@@ -70,3 +70,4 @@ C:\Users\hyung\Source\Repos\Celenort\CAESimulation\bin\Debug\OxyPlot.WindowsForm
 C:\Users\hyung\Source\Repos\Celenort\CAESimulation\bin\Debug\OxyPlot.xml
 C:\Users\hyung\Source\Repos\Celenort\CAESimulation\bin\Debug\OxyPlot.WindowsForms.xml
 C:\Users\hyung\Source\Repos\Celenort\CAESimulation\obj\Debug\CAESimulation.csproj.CopyComplete
+C:\Users\hyung\Source\Repos\Celenort\CAESimulation\obj\Debug\CAESimulation.Resultdiag.resources

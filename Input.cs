@@ -19,6 +19,7 @@ namespace CAESimulation
         public static DataTable dtCombined; // 결국은 Input data로 이걸 사용하게 됨.
         public static DateTime datemin;
         public static DateTime datemax;
+        public static int time;
         private void input_apply_Click(object sender, EventArgs e)
         {
             //Todo : Delete bttn1
@@ -282,6 +283,7 @@ namespace CAESimulation
             datestrt = input_dateTimePicker1.Value;
             input_fromtxtbox.Text = Math.Round((dateend - datestrt).TotalDays, 0).ToString();
             input_totxtbox.Text = (dateend - datestrt).TotalHours.ToString();
+            time = int.Parse((dateend - datestrt).TotalHours.ToString());
 
         }
 
