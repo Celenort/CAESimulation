@@ -24,7 +24,7 @@ namespace CAESimulation
 
         public string windfiledir;
         public string turbinefiledir;
-        public string tidefiledir;
+        public string metoceanfiledir;
         public string energyfiledir;
         public string tempInitialDir = "C:\\Users\\hyung\\source\\repos\\Celenort\\CAESimulation\\bin\\Debug";
 
@@ -126,7 +126,7 @@ namespace CAESimulation
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
                     input_dirtxtbox3.Text = filePath;
-                    tidefiledir = filePath;
+                    metoceanfiledir = filePath;
                 }
             }
         }

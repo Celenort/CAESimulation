@@ -15,18 +15,18 @@ namespace CAESimulation
         {
             //Todo : Delete bttn1
 
-            Input ip = new Input(windfiledir, tidefiledir, energyfiledir);
+            Input ip = new Input(windfiledir, metoceanfiledir, energyfiledir);
             ip.LoadWind();
             ip.LoadPower();
             Turbine tb = new Turbine(turbinefiledir);
             tb.SelectModel();
             Calculation cc = new Calculation();
             cc.LoadDataTable(ip, tb);
-            cc.ConvertGlobalToLocalUsage();
-            DataTable dt = cc.VelocityToPower(ip.dtWind, tb.dtTb);
-            cc.MergePwrgen();
-            Theory th = new Theory(cc);
-            th.ApplyTheory();
+            //cc.ConvertGlobalToLocalUsage();
+            //DataTable dt = cc.VelocityToPower(ip.dtWind, tb.dtTb);
+            //cc.MergePwrgen();
+            //Theory th = new Theory(cc);
+            //th.ApplyTheory();
         }
 
         private void input_preview_Click(object sender, EventArgs e)
@@ -40,14 +40,17 @@ namespace CAESimulation
     {
         public DataTable dtWind = new DataTable();
         public DataTable dtPower = new DataTable();
+        public DataTable dtOcean = new DataTable();
         Dictionary<int, string> hourdict;
         public string filePathWind = "ERA_5_Lat33.500000_Long126.000000_100m.txt";
         public string filePathPower = "한국전력거래소_시간별 전력수요량_20211231.csv";
+        public string filePathOcean = "MARINE_CWBUOY_22464_HR_2021_2021_2022.csv";
 
-        public Input(string wind, string tide, string energy)
+        public Input(string wind, string ocean, string energy)
         {
             filePathWind = wind;
             filePathPower = energy;
+            filePathOcean = ocean;
 
             hourdict = new Dictionary<int, string>();
             for (int i =0;i<25;i++)
@@ -146,7 +149,7 @@ namespace CAESimulation
                     DataRow dr = dtPower.NewRow();
                     if (i==24)
                     {
-                        dr["Date"] = Calculation.DissectDateTime(date + "T" + hourdict[i] + ":00:00");
+                        dr["Date"] = DissectDateTime(date + "T" + hourdict[i] + ":00:00");
                         dr["Power"] = sitems[i];
                         dtPower.Rows.Add(dr);
                         break;
@@ -159,6 +162,81 @@ namespace CAESimulation
             sr.Close();
             fs.Close();
         }
+        public void LoadMetOcean() // Loading files, Temporary
+        {
+            dtOcean.Columns.Add(new DataColumn("Date", typeof(string)));
+            dtOcean.Columns.Add(new DataColumn("SeaWaterTemp", typeof(double)));
+            dtOcean.Columns.Add(new DataColumn("MaxWave", typeof(double)));
+            dtOcean.Columns.Add(new DataColumn("SigWave", typeof(double)));
+            dtOcean.Columns.Add(new DataColumn("AvgWave", typeof(double)));
+            dtOcean.Columns.Add(new DataColumn("WavePeriod", typeof(double)));
 
+            DataColumn[] dtkey = new DataColumn[1];
+            dtkey[0] = dtOcean.Columns["Date"];
+            dtOcean.PrimaryKey = dtkey;
+
+            FileStream fs = File.OpenRead(filePathOcean);
+            StreamReader sr = new StreamReader(fs);
+            string s = sr.ReadLine(); // 1st line pass
+            string[] sitems;
+            while (!sr.EndOfStream)
+            {
+                s = sr.ReadLine();
+                sitems = s.Split(',');
+                string datetime = sitems[1];
+                DataRow dr = dtPower.NewRow();
+                dr["SeaWaterTemp"] = sitems[2];
+                dr["MaxWave"] = sitems[3];
+                dr["SigWave"] = sitems[4];
+                dr["AvgWave"] = sitems[5];
+                dr["WavePeriod"] = sitems[6];
+                dr["Date"] = DissectDateTime2(datetime); //Todo
+                dtOcean.Rows.Add(dr);
+            }
+            sr.Close();
+            fs.Close();
+        }
+        public string DissectDateTime(string date) // 0 to 23
+            //used at LoadPower
+        {
+            char[] dateAsChar = date.ToCharArray();
+
+            dateAsChar[11] = '0';
+            dateAsChar[12] = '0'; // make "24" -> "00"
+
+            string newDate = new string(dateAsChar);
+            DateTime dtTime = DateTime.ParseExact(newDate, "yyyy-MM-ddTHH:mm:ss",
+                                            System.Globalization.CultureInfo.InvariantCulture);
+            dtTime = dtTime.AddDays(1);
+
+            return (dtTime.ToString("yyyy-MM-ddTHH:mm:ss"));
+        }
+        public string DissectDateTime2(string date) // for metocean
+        {
+            char[] dateAsChar = date.ToCharArray();
+            dateAsChar[10] = 'T';
+            char[] hour = new char[8];
+            for (int i = 12;dateAsChar[i]==':';i++)
+            {
+                hour.Append<char>(dateAsChar[i]);
+            }
+            int hour12 = int.Parse(hour.ToString());
+            int length = dateAsChar.Length;
+            if (dateAsChar[length-2] == 'A' && hour12 ==12)
+            {
+                hour12 = 0;
+            }
+            if (dateAsChar[length-2]=='P') // 오후
+            {
+                hour12 += 12;
+            }
+            char[] datechar = new char[11];
+            for (int j = 0; j < 11; j++)
+            {
+                datechar[j] = dateAsChar[j];
+            }
+            string result = datechar.ToString() +hourdict[hour12]+":00:00";
+            return result;
+        }
     }
 }
