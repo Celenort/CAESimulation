@@ -18,12 +18,6 @@ namespace CAESimulation
         public static double totalPowerGen=0;
         private int pwrUsageTotal = 558338404;
         private int pwrUsageProportion = 66000;
-        public void LoadDataTable(Input ip, Turbine tb)
-        {
-            dtWind = ip.dtWind.Copy();
-            dtPower = ip.dtPower.Copy();
-            dtTb = tb.dtTb.Copy(); // Load Infors from Tb, ip class
-        }
 
         public double LinIntp(double velo, DataTable dtTb)
             // Perform Linear Interpolation using Velocity-Power curve
@@ -50,7 +44,7 @@ namespace CAESimulation
             return Math.Round((proportion * P2 + (1 - proportion) * P1),5);
         }
 
-        public DataTable VelocityToPower(DataTable dtWind, DataTable dtTb)
+        public void VelocityToPower(ref DataTable dtWind, DataTable dtTb)
         {
             //Todo: Vel ->Pwr
             DataTable dtOutput = dtWind.Copy();
@@ -59,13 +53,11 @@ namespace CAESimulation
             {
                 dr["CvtPwr"] = LinIntp(Double.Parse(dr["Speed"].ToString()), dtTb);
             }
-            dtPwrGen = dtOutput;
-
-            return dtOutput;
+            dtWind = dtOutput.Copy();
         }
-        public void ConvertGlobalToLocalUsage()
+        public void ConvertGlobalToLocalUsage(DataTable dtPwr)
         {
-            foreach (DataRow dr in dtPower.Rows)
+            foreach (DataRow dr in dtPwr.Rows)
             {
                 //dr["Power"] = Math.Round(Double.Parse(dr["Power"].ToString()) * pwrUsageProportion,3);
                 double a = Double.Parse(dr["Power"].ToString()) * pwrUsageProportion / pwrUsageTotal;
@@ -73,13 +65,13 @@ namespace CAESimulation
                 totalPowerGen += a;
             }
         }
-        public void MergePwrgen()
+        public void MergePwrgen(DataTable dtPwrGen2, DataTable dtPwr2)
         {
-            dtPwrGen.Columns.Add(new DataColumn("PwrConsump", typeof(double)));
-            foreach (DataRow dr in dtPwrGen.Rows)
+            dtPwrGen2.Columns.Add(new DataColumn("PwrConsump", typeof(double)));
+            foreach (DataRow dr in dtPwrGen2.Rows)
             {
                 object date = dr["Date"];
-                DataRow powerRow = dtPower.Rows.Find(date);
+                DataRow powerRow = dtPwr2.Rows.Find(date);
 
                 if (powerRow!=null)
                 {

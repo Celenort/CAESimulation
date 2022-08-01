@@ -19,7 +19,7 @@ namespace CAESimulation
         public static double totalPwrGen=0;
         public Theory(Calculation cc)
         {
-            dtTheory = cc.dtPwrGen.Copy();
+            dtTheory = CAESimulation.dtCombined.Copy();
         }
         public double Theory1(double pwrgen, double pwrconsump, double lowcut, double percentage)
         {

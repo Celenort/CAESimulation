@@ -24,260 +24,38 @@ namespace CAESimulation
         }
 
         public string windfiledir;
-        public string turbinefiledir;
+        public static string turbinefiledir;
         public string metoceanfiledir;
         public string energyfiledir;
         public string tempInitialDir = "C:\\Users\\hyung\\source\\repos\\Celenort\\CAESimulation\\bin\\Debug";
+        private static string libturbinefilepath = "Wind Turbines.csv";
         public static DateTime datestrt;
         public static DateTime dateend;
+        public static DataTable turbines;
 
 
-
-        private void button2_Click(object sender, EventArgs e)
+        private void rst_loadGraph_Click(object sender, EventArgs e)
         {
-            var myModel = new PlotModel { Title = "Example 1" };
+            object[] arrObjspeed = dtCombined.Select().Select(x => x["Speed"]).ToArray();
+            object[] arrObjpower = dtCombined.Select().Select(x => x["Power"]).ToArray();
+            object[] arrObjsigwave = dtCombined.Select().Select(x => x["SigWave"]).ToArray();
+
+            var myModel = new PlotModel { Title = "Wind Veolcity" };
             var lineSeries = new LineSeries();
-            getGZ(ref lineSeries);
-            myModel.Series.Add(lineSeries);
-            DateTimeAxis xAxis = new DateTimeAxis();
-            xAxis.Position = AxisPosition.Bottom;
-            xAxis.IsZoomEnabled = false;
-
-            //Define the y axis
-            LinearAxis yAxis = new LinearAxis();
-            yAxis.Position = AxisPosition.Left;
-            //Disable the axis zoom
-            yAxis.IsZoomEnabled = false;
-
-            //Add the Axes to the graph
-            myModel.Axes.Add(xAxis);
-            myModel.Axes.Add(yAxis);
-            this.plotView1.Model = myModel;
-
-
-
-            textBox1.Text = Math.Round(Calculation.totalPowerGen,3).ToString();
-            textBox2.Text = Math.Round(Theory.totalPwrGen,3).ToString();
-            textBox3.Text = Math.Round((Theory.totalPwrGen / times),3).ToString();
-        }
-        private void getGZ(ref LineSeries a)
-        {
-            List<double> gzvals = ParseDT();
-            if (gzvals == null)
+            double[] arrDouble = arrObjspeed.Cast<double>().ToArray();
+            List<double> arrList = arrDouble.ToList<double>();
+            if (arrList == null)
             {
-                MessageBox.Show("BargeShip을 생성하고 평형자세를 계산한 후에 GZ Curve를 구할 수 있습니다.", "NAC Term Project 1", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
+                MessageBox.Show("No data loaded", "CAESimulation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             double i = 0;
-            foreach (double item in gzvals)
-            {
-                a.Points.Add(new DataPoint(i, item));
-                i ++; // i : 1 hour
-                times = int.Parse(i.ToString());
-            }
-        }
-        private List<double> ParseDT()
-        {
-            object[] arrObj = Theory.dtTheory.Select().Select(x => x["SurplusElec"]).ToArray();
-            double[] arrDouble = arrObj.Cast<double>().ToArray();
-            List<double> arrList = arrDouble.ToList<double>();
-            return arrList;
-        }
-
-
-
-        private void sourcebrowse_Click(object sender, EventArgs e)
-        {
-            var filePath = string.Empty;
-
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = tempInitialDir;
-                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-                    input_dirtxtbox1.Text = filePath;
-                    windfiledir = filePath;
-                }
-            }
-
-        }
-
-        private void turbinebrowsebtn_Click(object sender, EventArgs e)
-        {
-            var filePath = string.Empty;
-
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = tempInitialDir;
-                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-                    input_dirtxtbox2.Text = filePath;
-                    turbinefiledir = filePath;
-                }
-            }
-        }
-
-        private void marinebrowsebtn_Click(object sender, EventArgs e)
-        {
-            var filePath = string.Empty;
-
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = tempInitialDir;
-                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-                    input_dirtxtbox3.Text = filePath;
-                    metoceanfiledir = filePath;
-                }
-            }
-        }
-
-        private void elecbrowsebtn_Click(object sender, EventArgs e)
-        {
-            var filePath = string.Empty;
-
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = tempInitialDir;
-                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-                    input_dirtxtbox4.Text = filePath;
-                    energyfiledir = filePath;
-                }
-            }
-        }
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (input_checkbox1.Checked)
-            {
-                input_dirtxtbox1.Enabled = true;
-                input_browse1.Enabled = true;
-            }
-            else
-            {
-                input_dirtxtbox1.Enabled = false;
-                input_browse1.Enabled = false;
-            }
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (input_checkbox2.Checked)
-            {
-                input_dirtxtbox2.Enabled = true;
-                input_browse2.Enabled = true;
-            }
-            else
-            {
-                input_dirtxtbox2.Enabled = false;
-                input_browse2.Enabled = false;
-            }
-        }
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (input_checkbox3.Checked)
-            {
-                input_dirtxtbox3.Enabled = true;
-                input_browse3.Enabled = true;
-            }
-            else
-            {
-                input_dirtxtbox3.Enabled = false;
-                input_browse3.Enabled = false;
-            }
-        }
-        private void checkBox4_CheckedChanged(object sender, EventArgs e)
-        {
-            if (input_checkbox4.Checked)
-            {
-                input_dirtxtbox4.Enabled = true;
-                input_browse4.Enabled = true;
-            }
-            else
-            {
-                input_dirtxtbox4.Enabled = false;
-                input_browse4.Enabled = false;
-            }
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            if (DateTime.Compare(input_dateTimePicker1.Value,datemin)<0 || DateTime.Compare(input_dateTimePicker1.Value,datemax)>0)
-            {
-                MessageBox.Show("Selected date is not included in the data");
-                input_dateTimePicker1.Value = datemin;
-            } else if (DateTime.Compare(input_dateTimePicker1.Value, input_dateTimePicker2.Value)>0)
-            {
-                MessageBox.Show("Selected date cannot be later than the End date");
-                input_dateTimePicker1.Value = datemin;
-            }
-            input_monthCalendar1.SelectionStart = input_dateTimePicker1.Value;
-            datestrt = input_dateTimePicker1.Value;
-            input_fromtxtbox.Text = Math.Round((dateend - datestrt).TotalDays,0).ToString();
-            input_totxtbox.Text = (dateend - datestrt).TotalHours.ToString();
-
-        }
-
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-            if (DateTime.Compare(input_dateTimePicker2.Value, datemin) < 0 || DateTime.Compare(input_dateTimePicker2.Value, datemax) > 0)
-            {
-                MessageBox.Show("Selected date is not included in the data");
-                input_dateTimePicker2.Value = datemax;
-            }
-            else if (DateTime.Compare(input_dateTimePicker1.Value, input_dateTimePicker2.Value) > 0)
-            {
-                MessageBox.Show("Selected date cannot be later than the End date");
-                input_dateTimePicker2.Value = datemax;
-            }
-            input_monthCalendar2.SelectionStart = input_dateTimePicker1.Value;
-            dateend = input_dateTimePicker2.Value;
-            input_fromtxtbox.Text = Math.Round((dateend - datestrt).TotalDays, 0).ToString();
-            input_totxtbox.Text = (dateend - datestrt).TotalHours.ToString();
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var myModel = new PlotModel { Title = "Example 1" };
-            var lineSeries = new LineSeries();
-            object[] arrObj = Theory.dtTheory.Select().Select(x => x["SurplusElec"]).ToArray();
-            double[] arrDouble = arrObj.Cast<double>().ToArray();
-            List<double> arrList = arrDouble.ToList<double>();
-            List<double> gzvals = ParseDT();
-            double i = 0;
-            foreach (double item in gzvals)
+            foreach (double item in arrList)
             {
                 lineSeries.Points.Add(new DataPoint(i, item));
                 i++; // i : 1 hour
                 times = int.Parse(i.ToString());
             }
-
-            getGZ(ref lineSeries);
             myModel.Series.Add(lineSeries);
             DateTimeAxis xAxis = new DateTimeAxis();
             xAxis.Position = AxisPosition.Bottom;
@@ -292,9 +70,112 @@ namespace CAESimulation
             //Add the Axes to the graph
             myModel.Axes.Add(xAxis);
             myModel.Axes.Add(yAxis);
-            this.plotView1.Model = myModel;
+            this.rst_windvel.Model = myModel;
+
+            var myModel2 = new PlotModel { Title = "Power Used" };
+            var lineSeries2 = new LineSeries();
+            double[] arrDouble2 = arrObjpower.Cast<double>().ToArray();
+            List<double> arrList2 = arrDouble2.ToList<double>();
+            if (arrList2 == null)
+            {
+                MessageBox.Show("No data loaded", "CAESimulation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            double j = 0;
+            foreach (double item in arrList2)
+            {
+                lineSeries2.Points.Add(new DataPoint(j, item));
+                j++; // i : 1 hour
+            }
+            myModel2.Series.Add(lineSeries2);
+            DateTimeAxis xAxis2 = new DateTimeAxis();
+            xAxis2.Position = AxisPosition.Bottom;
+            xAxis2.IsZoomEnabled = false;
+
+            //Define the y axis
+            LinearAxis yAxis2 = new LinearAxis();
+            yAxis2.Position = AxisPosition.Left;
+            //Disable the axis zoom
+            yAxis2.IsZoomEnabled = false;
+            //Add the Axes to the graph
+            myModel2.Axes.Add(xAxis2);
+            myModel2.Axes.Add(yAxis2);
+            this.rst_elec.Model = myModel2;
+
+
+            var myModel3 = new PlotModel { Title = "Power Generated" };
+            var lineSeries3 = new LineSeries();
+            double[] arrDouble3 = arrObjsigwave.Cast<double>().ToArray();
+            List<double> arrList3 = arrDouble3.ToList<double>();
+            if (arrList3 == null)
+            {
+                MessageBox.Show("No data loaded", "CAESimulation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            double k = 0;
+            foreach (double item in arrList3)
+            {
+                lineSeries3.Points.Add(new DataPoint(k, item));
+                k++; // i : 1 hour
+            }
+            myModel3.Series.Add(lineSeries3);
+            DateTimeAxis xAxis3 = new DateTimeAxis();
+            xAxis3.Position = AxisPosition.Bottom;
+            xAxis3.IsZoomEnabled = false;
+
+            //Define the y axis
+            LinearAxis yAxis3 = new LinearAxis();
+            yAxis3.Position = AxisPosition.Left;
+            //Disable the axis zoom
+            yAxis3.IsZoomEnabled = false;
+            //Add the Axes to the graph
+            myModel3.Axes.Add(xAxis3);
+            myModel3.Axes.Add(yAxis3);
+            this.rst_wavemax.Model = myModel3;
+
+            Calculation cc = new Calculation();
+            cc.ConvertGlobalToLocalUsage(dtCombined);
+            cc.VelocityToPower(ref dtCombined,dtTb);
+            cc.MergePwrgen(dtCombined, dtPower);
+            Theory th = new Theory(cc);
+            th.ApplyTheory();
+            object[] arrObj = Theory.dtTheory.Select().Select(x => x["SurplusElec"]).ToArray();
+            var myModel4 = new PlotModel { Title = "Surplus" };
+            var lineSeries4 = new LineSeries();
+            double[] arrDouble4 = arrObj.Cast<double>().ToArray();
+            List<double> arrList4 = arrDouble4.ToList<double>();
+            if (arrList4 == null)
+            {
+                MessageBox.Show("No data loaded", "CAESimulation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            double l = 0;
+            foreach (double item in arrList4)
+            {
+                lineSeries4.Points.Add(new DataPoint(l, item));
+                l++; // i : 1 hour
+            }
+            myModel4.Series.Add(lineSeries4);
+            DateTimeAxis xAxis4 = new DateTimeAxis();
+            xAxis4.Position = AxisPosition.Bottom;
+            xAxis4.IsZoomEnabled = false;
+
+            //Define the y axis
+            LinearAxis yAxis4 = new LinearAxis();
+            yAxis4.Position = AxisPosition.Left;
+            //Disable the axis zoom
+            yAxis4.IsZoomEnabled = false;
+            //Add the Axes to the graph
+            myModel4.Axes.Add(xAxis4);
+            myModel4.Axes.Add(yAxis4);
+            this.rst_pwrgen.Model = myModel4;
+
+
+
+
+            textBox1.Text = Math.Round(Calculation.totalPowerGen, 3).ToString();
+            textBox2.Text = Math.Round(Theory.totalPwrGen, 3).ToString();
+            textBox3.Text = Math.Round((Theory.totalPwrGen / times), 3).ToString();
         }
-
-
     }
 }

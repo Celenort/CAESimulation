@@ -128,6 +128,183 @@ namespace CAESimulation
             }
             return result;
         }
+        private void sourcebrowse_Click(object sender, EventArgs e)
+        {
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = tempInitialDir;
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+                    input_dirtxtbox1.Text = filePath;
+                    windfiledir = filePath;
+                }
+            }
+
+        }
+
+        private void turbinebrowsebtn_Click(object sender, EventArgs e)
+        {
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = tempInitialDir;
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+                    input_dirtxtbox2.Text = filePath;
+                    turbinefiledir = filePath;
+                }
+            }
+        }
+
+        private void marinebrowsebtn_Click(object sender, EventArgs e)
+        {
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = tempInitialDir;
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+                    input_dirtxtbox3.Text = filePath;
+                    metoceanfiledir = filePath;
+                }
+            }
+        }
+
+        private void elecbrowsebtn_Click(object sender, EventArgs e)
+        {
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = tempInitialDir;
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+                    input_dirtxtbox4.Text = filePath;
+                    energyfiledir = filePath;
+                }
+            }
+        }
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (input_checkbox1.Checked)
+            {
+                input_dirtxtbox1.Enabled = true;
+                input_browse1.Enabled = true;
+            }
+            else
+            {
+                input_dirtxtbox1.Enabled = false;
+                input_browse1.Enabled = false;
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (input_checkbox2.Checked)
+            {
+                input_dirtxtbox2.Enabled = true;
+                input_browse2.Enabled = true;
+            }
+            else
+            {
+                input_dirtxtbox2.Enabled = false;
+                input_browse2.Enabled = false;
+            }
+        }
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (input_checkbox3.Checked)
+            {
+                input_dirtxtbox3.Enabled = true;
+                input_browse3.Enabled = true;
+            }
+            else
+            {
+                input_dirtxtbox3.Enabled = false;
+                input_browse3.Enabled = false;
+            }
+        }
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (input_checkbox4.Checked)
+            {
+                input_dirtxtbox4.Enabled = true;
+                input_browse4.Enabled = true;
+            }
+            else
+            {
+                input_dirtxtbox4.Enabled = false;
+                input_browse4.Enabled = false;
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if (DateTime.Compare(input_dateTimePicker1.Value, datemin) < 0 || DateTime.Compare(input_dateTimePicker1.Value, datemax) > 0)
+            {
+                MessageBox.Show("Selected date is not included in the data");
+                input_dateTimePicker1.Value = datemin;
+            }
+            else if (DateTime.Compare(input_dateTimePicker1.Value, input_dateTimePicker2.Value) > 0)
+            {
+                MessageBox.Show("Selected date cannot be later than the End date");
+                input_dateTimePicker1.Value = datemin;
+            }
+            input_monthCalendar1.SelectionStart = input_dateTimePicker1.Value;
+            datestrt = input_dateTimePicker1.Value;
+            input_fromtxtbox.Text = Math.Round((dateend - datestrt).TotalDays, 0).ToString();
+            input_totxtbox.Text = (dateend - datestrt).TotalHours.ToString();
+
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            if (DateTime.Compare(input_dateTimePicker2.Value, datemin) < 0 || DateTime.Compare(input_dateTimePicker2.Value, datemax) > 0)
+            {
+                MessageBox.Show("Selected date is not included in the data");
+                input_dateTimePicker2.Value = datemax;
+            }
+            else if (DateTime.Compare(input_dateTimePicker1.Value, input_dateTimePicker2.Value) > 0)
+            {
+                MessageBox.Show("Selected date cannot be later than the End date");
+                input_dateTimePicker2.Value = datemax;
+            }
+            input_monthCalendar2.SelectionStart = input_dateTimePicker1.Value;
+            dateend = input_dateTimePicker2.Value;
+            input_fromtxtbox.Text = Math.Round((dateend - datestrt).TotalDays, 0).ToString();
+            input_totxtbox.Text = (dateend - datestrt).TotalHours.ToString();
+
+        }
+
+
     }
 
 
