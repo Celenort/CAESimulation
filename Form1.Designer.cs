@@ -34,9 +34,12 @@ namespace CAESimulation
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.input_previewdatagridview = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.input_buttonfinalaply = new System.Windows.Forms.Button();
+            this.input_preview = new System.Windows.Forms.Button();
+            this.input_labelnumhours = new System.Windows.Forms.Label();
             this.input_labelselectdate = new System.Windows.Forms.Label();
             this.input_monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.input_labelfromto = new System.Windows.Forms.Label();
+            this.input_labelnumdays = new System.Windows.Forms.Label();
             this.input_monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.input_labelcalender = new System.Windows.Forms.Label();
             this.input_labelstrt = new System.Windows.Forms.Label();
@@ -46,7 +49,6 @@ namespace CAESimulation
             this.input_fromtxtbox = new System.Windows.Forms.TextBox();
             this.input_dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.input_preview = new System.Windows.Forms.Button();
             this.input_apply = new System.Windows.Forms.Button();
             this.input_browse1 = new System.Windows.Forms.Button();
             this.input_dirtxtbox1 = new System.Windows.Forms.TextBox();
@@ -61,12 +63,18 @@ namespace CAESimulation
             this.input_checkbox3 = new System.Windows.Forms.CheckBox();
             this.input_checkbox4 = new System.Windows.Forms.CheckBox();
             this.Turbine = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.plotView2 = new OxyPlot.WindowsForms.PlotView();
+            this.Arrangement = new System.Windows.Forms.TabPage();
             this.Losses = new System.Windows.Forms.TabPage();
             this.Uncertainties = new System.Windows.Forms.TabPage();
             this.Metocean = new System.Windows.Forms.TabPage();
             this.plotView3 = new OxyPlot.WindowsForms.PlotView();
             this.Result = new System.Windows.Forms.TabPage();
+            this.plotView5 = new OxyPlot.WindowsForms.PlotView();
+            this.plotView4 = new OxyPlot.WindowsForms.PlotView();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -75,7 +83,6 @@ namespace CAESimulation
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.plotView1 = new OxyPlot.WindowsForms.PlotView();
-            this.Arrangement = new System.Windows.Forms.TabPage();
             this.TabControl.SuspendLayout();
             this.Input.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -114,7 +121,7 @@ namespace CAESimulation
             this.Input.Controls.Add(this.groupBox1);
             this.Input.Location = new System.Drawing.Point(4, 22);
             this.Input.Name = "Input";
-            this.Input.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Input.Padding = new System.Windows.Forms.Padding(3);
             this.Input.Size = new System.Drawing.Size(1026, 576);
             this.Input.TabIndex = 0;
             this.Input.Text = "Input";
@@ -127,7 +134,7 @@ namespace CAESimulation
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(440, 522);
+            this.groupBox3.Size = new System.Drawing.Size(440, 555);
             this.groupBox3.TabIndex = 26;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Preview";
@@ -139,14 +146,17 @@ namespace CAESimulation
             this.input_previewdatagridview.Name = "input_previewdatagridview";
             this.input_previewdatagridview.RowHeadersWidth = 51;
             this.input_previewdatagridview.RowTemplate.Height = 23;
-            this.input_previewdatagridview.Size = new System.Drawing.Size(435, 506);
+            this.input_previewdatagridview.Size = new System.Drawing.Size(435, 535);
             this.input_previewdatagridview.TabIndex = 5;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.input_buttonfinalaply);
+            this.groupBox2.Controls.Add(this.input_preview);
+            this.groupBox2.Controls.Add(this.input_labelnumhours);
             this.groupBox2.Controls.Add(this.input_labelselectdate);
             this.groupBox2.Controls.Add(this.input_monthCalendar1);
-            this.groupBox2.Controls.Add(this.input_labelfromto);
+            this.groupBox2.Controls.Add(this.input_labelnumdays);
             this.groupBox2.Controls.Add(this.input_monthCalendar2);
             this.groupBox2.Controls.Add(this.input_labelcalender);
             this.groupBox2.Controls.Add(this.input_labelstrt);
@@ -157,10 +167,40 @@ namespace CAESimulation
             this.groupBox2.Controls.Add(this.input_dateTimePicker2);
             this.groupBox2.Location = new System.Drawing.Point(8, 254);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(567, 282);
+            this.groupBox2.Size = new System.Drawing.Size(567, 310);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Date";
+            this.groupBox2.Visible = false;
+            // 
+            // input_buttonfinalaply
+            // 
+            this.input_buttonfinalaply.Location = new System.Drawing.Point(472, 274);
+            this.input_buttonfinalaply.Name = "input_buttonfinalaply";
+            this.input_buttonfinalaply.Size = new System.Drawing.Size(75, 23);
+            this.input_buttonfinalaply.TabIndex = 27;
+            this.input_buttonfinalaply.Text = "Apply";
+            this.input_buttonfinalaply.UseVisualStyleBackColor = true;
+            this.input_buttonfinalaply.Click += new System.EventHandler(this.input_buttonfinalaply_Click);
+            // 
+            // input_preview
+            // 
+            this.input_preview.Location = new System.Drawing.Point(391, 274);
+            this.input_preview.Name = "input_preview";
+            this.input_preview.Size = new System.Drawing.Size(75, 23);
+            this.input_preview.TabIndex = 26;
+            this.input_preview.Text = "Preview";
+            this.input_preview.UseVisualStyleBackColor = true;
+            this.input_preview.Click += new System.EventHandler(this.input_preview_Click);
+            // 
+            // input_labelnumhours
+            // 
+            this.input_labelnumhours.AutoSize = true;
+            this.input_labelnumhours.Location = new System.Drawing.Point(11, 279);
+            this.input_labelnumhours.Name = "input_labelnumhours";
+            this.input_labelnumhours.Size = new System.Drawing.Size(100, 12);
+            this.input_labelnumhours.TabIndex = 23;
+            this.input_labelnumhours.Text = "Number of Datas";
             // 
             // input_labelselectdate
             // 
@@ -182,14 +222,14 @@ namespace CAESimulation
             this.input_monthCalendar1.TabIndex = 12;
             this.input_monthCalendar1.TrailingForeColor = System.Drawing.SystemColors.Highlight;
             // 
-            // input_labelfromto
+            // input_labelnumdays
             // 
-            this.input_labelfromto.AutoSize = true;
-            this.input_labelfromto.Location = new System.Drawing.Point(11, 250);
-            this.input_labelfromto.Name = "input_labelfromto";
-            this.input_labelfromto.Size = new System.Drawing.Size(55, 12);
-            this.input_labelfromto.TabIndex = 22;
-            this.input_labelfromto.Text = "From-To";
+            this.input_labelnumdays.AutoSize = true;
+            this.input_labelnumdays.Location = new System.Drawing.Point(11, 250);
+            this.input_labelnumdays.Name = "input_labelnumdays";
+            this.input_labelnumdays.Size = new System.Drawing.Size(97, 12);
+            this.input_labelnumdays.TabIndex = 22;
+            this.input_labelnumdays.Text = "Number of Days";
             // 
             // input_monthCalendar2
             // 
@@ -231,9 +271,10 @@ namespace CAESimulation
             // 
             // input_totxtbox
             // 
-            this.input_totxtbox.Location = new System.Drawing.Point(326, 247);
+            this.input_totxtbox.Location = new System.Drawing.Point(117, 276);
             this.input_totxtbox.Name = "input_totxtbox";
-            this.input_totxtbox.Size = new System.Drawing.Size(220, 21);
+            this.input_totxtbox.ReadOnly = true;
+            this.input_totxtbox.Size = new System.Drawing.Size(189, 21);
             this.input_totxtbox.TabIndex = 19;
             // 
             // input_dateTimePicker1
@@ -247,9 +288,10 @@ namespace CAESimulation
             // 
             // input_fromtxtbox
             // 
-            this.input_fromtxtbox.Location = new System.Drawing.Point(90, 247);
+            this.input_fromtxtbox.Location = new System.Drawing.Point(117, 247);
             this.input_fromtxtbox.Name = "input_fromtxtbox";
-            this.input_fromtxtbox.Size = new System.Drawing.Size(215, 21);
+            this.input_fromtxtbox.ReadOnly = true;
+            this.input_fromtxtbox.Size = new System.Drawing.Size(189, 21);
             this.input_fromtxtbox.TabIndex = 18;
             // 
             // input_dateTimePicker2
@@ -263,7 +305,6 @@ namespace CAESimulation
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.input_preview);
             this.groupBox1.Controls.Add(this.input_apply);
             this.groupBox1.Controls.Add(this.input_browse1);
             this.groupBox1.Controls.Add(this.input_dirtxtbox1);
@@ -284,19 +325,9 @@ namespace CAESimulation
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Files";
             // 
-            // input_preview
-            // 
-            this.input_preview.Location = new System.Drawing.Point(453, 198);
-            this.input_preview.Name = "input_preview";
-            this.input_preview.Size = new System.Drawing.Size(75, 23);
-            this.input_preview.TabIndex = 26;
-            this.input_preview.Text = "Preview";
-            this.input_preview.UseVisualStyleBackColor = true;
-            this.input_preview.Click += new System.EventHandler(this.input_preview_Click);
-            // 
             // input_apply
             // 
-            this.input_apply.Location = new System.Drawing.Point(363, 198);
+            this.input_apply.Location = new System.Drawing.Point(448, 199);
             this.input_apply.Name = "input_apply";
             this.input_apply.Size = new System.Drawing.Size(80, 23);
             this.input_apply.TabIndex = 25;
@@ -430,18 +461,48 @@ namespace CAESimulation
             // 
             // Turbine
             // 
+            this.Turbine.Controls.Add(this.comboBox1);
+            this.Turbine.Controls.Add(this.button3);
+            this.Turbine.Controls.Add(this.button1);
             this.Turbine.Controls.Add(this.plotView2);
             this.Turbine.Location = new System.Drawing.Point(4, 22);
             this.Turbine.Name = "Turbine";
-            this.Turbine.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Turbine.Padding = new System.Windows.Forms.Padding(3);
             this.Turbine.Size = new System.Drawing.Size(1026, 576);
             this.Turbine.TabIndex = 1;
             this.Turbine.Text = "Turbine";
             this.Turbine.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(8, 19);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(404, 20);
+            this.comboBox1.TabIndex = 3;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(360, 315);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Select";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(441, 315);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Load Custom";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // plotView2
             // 
-            this.plotView2.Location = new System.Drawing.Point(291, 19);
+            this.plotView2.Location = new System.Drawing.Point(441, 19);
             this.plotView2.Name = "plotView2";
             this.plotView2.PanCursor = System.Windows.Forms.Cursors.Hand;
             this.plotView2.Size = new System.Drawing.Size(564, 290);
@@ -451,11 +512,21 @@ namespace CAESimulation
             this.plotView2.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.plotView2.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
+            // Arrangement
+            // 
+            this.Arrangement.Location = new System.Drawing.Point(4, 22);
+            this.Arrangement.Name = "Arrangement";
+            this.Arrangement.Padding = new System.Windows.Forms.Padding(3);
+            this.Arrangement.Size = new System.Drawing.Size(1026, 576);
+            this.Arrangement.TabIndex = 6;
+            this.Arrangement.Text = "Arrangement";
+            this.Arrangement.UseVisualStyleBackColor = true;
+            // 
             // Losses
             // 
             this.Losses.Location = new System.Drawing.Point(4, 22);
             this.Losses.Name = "Losses";
-            this.Losses.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Losses.Padding = new System.Windows.Forms.Padding(3);
             this.Losses.Size = new System.Drawing.Size(1026, 576);
             this.Losses.TabIndex = 2;
             this.Losses.Text = "Losses";
@@ -465,7 +536,7 @@ namespace CAESimulation
             // 
             this.Uncertainties.Location = new System.Drawing.Point(4, 22);
             this.Uncertainties.Name = "Uncertainties";
-            this.Uncertainties.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Uncertainties.Padding = new System.Windows.Forms.Padding(3);
             this.Uncertainties.Size = new System.Drawing.Size(1026, 576);
             this.Uncertainties.TabIndex = 3;
             this.Uncertainties.Text = "Uncertainties";
@@ -496,6 +567,8 @@ namespace CAESimulation
             // 
             // Result
             // 
+            this.Result.Controls.Add(this.plotView5);
+            this.Result.Controls.Add(this.plotView4);
             this.Result.Controls.Add(this.label3);
             this.Result.Controls.Add(this.textBox3);
             this.Result.Controls.Add(this.textBox2);
@@ -511,10 +584,36 @@ namespace CAESimulation
             this.Result.Text = "Result";
             this.Result.UseVisualStyleBackColor = true;
             // 
+            // plotView5
+            // 
+            this.plotView5.Location = new System.Drawing.Point(8, 275);
+            this.plotView5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.plotView5.Name = "plotView5";
+            this.plotView5.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.plotView5.Size = new System.Drawing.Size(1010, 128);
+            this.plotView5.TabIndex = 19;
+            this.plotView5.Text = "plotView5";
+            this.plotView5.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.plotView5.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.plotView5.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // plotView4
+            // 
+            this.plotView4.Location = new System.Drawing.Point(8, 143);
+            this.plotView4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.plotView4.Name = "plotView4";
+            this.plotView4.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.plotView4.Size = new System.Drawing.Size(1010, 128);
+            this.plotView4.TabIndex = 18;
+            this.plotView4.Text = "plotView4";
+            this.plotView4.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.plotView4.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.plotView4.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(597, 352);
+            this.label3.Location = new System.Drawing.Point(597, 548);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 12);
             this.label3.TabIndex = 17;
@@ -522,7 +621,7 @@ namespace CAESimulation
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(709, 349);
+            this.textBox3.Location = new System.Drawing.Point(709, 545);
             this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -531,7 +630,7 @@ namespace CAESimulation
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(496, 350);
+            this.textBox2.Location = new System.Drawing.Point(496, 546);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -541,7 +640,7 @@ namespace CAESimulation
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(351, 353);
+            this.label2.Location = new System.Drawing.Point(351, 549);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 12);
             this.label2.TabIndex = 14;
@@ -549,7 +648,7 @@ namespace CAESimulation
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(8, 350);
+            this.button2.Location = new System.Drawing.Point(8, 546);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(80, 23);
@@ -560,7 +659,7 @@ namespace CAESimulation
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(240, 350);
+            this.textBox1.Location = new System.Drawing.Point(240, 546);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -570,7 +669,7 @@ namespace CAESimulation
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(145, 352);
+            this.label1.Location = new System.Drawing.Point(145, 548);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 12);
             this.label1.TabIndex = 12;
@@ -582,22 +681,12 @@ namespace CAESimulation
             this.plotView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.plotView1.Name = "plotView1";
             this.plotView1.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.plotView1.Size = new System.Drawing.Size(860, 167);
+            this.plotView1.Size = new System.Drawing.Size(1010, 128);
             this.plotView1.TabIndex = 3;
             this.plotView1.Text = "plotView1";
             this.plotView1.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this.plotView1.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.plotView1.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
-            // 
-            // Arrangement
-            // 
-            this.Arrangement.Location = new System.Drawing.Point(4, 22);
-            this.Arrangement.Name = "Arrangement";
-            this.Arrangement.Padding = new System.Windows.Forms.Padding(3);
-            this.Arrangement.Size = new System.Drawing.Size(1026, 576);
-            this.Arrangement.TabIndex = 6;
-            this.Arrangement.Text = "tabPage1";
-            this.Arrangement.UseVisualStyleBackColor = true;
             // 
             // CAESimulation
             // 
@@ -648,7 +737,7 @@ namespace CAESimulation
         private System.Windows.Forms.Label input_labelstrt;
         private System.Windows.Forms.MonthCalendar input_monthCalendar2;
         private System.Windows.Forms.MonthCalendar input_monthCalendar1;
-        private System.Windows.Forms.Label input_labelfromto;
+        private System.Windows.Forms.Label input_labelnumdays;
         private System.Windows.Forms.Label input_labelcalender;
         private System.Windows.Forms.Label input_labelselectdate;
         private System.Windows.Forms.TextBox input_totxtbox;
@@ -671,6 +760,13 @@ namespace CAESimulation
         private System.Windows.Forms.DataGridView input_previewdatagridview;
         private System.Windows.Forms.Button input_preview;
         private System.Windows.Forms.TabPage Arrangement;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button1;
+        private OxyPlot.WindowsForms.PlotView plotView5;
+        private OxyPlot.WindowsForms.PlotView plotView4;
+        private System.Windows.Forms.Label input_labelnumhours;
+        private System.Windows.Forms.Button input_buttonfinalaply;
     }
 }
 

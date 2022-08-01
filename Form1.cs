@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using OxyPlot;
 using OxyPlot.WindowsForms;
 using OxyPlot.Series;
+using OxyPlot.Axes;
 using System.IO;
 
 namespace CAESimulation
@@ -27,6 +28,8 @@ namespace CAESimulation
         public string metoceanfiledir;
         public string energyfiledir;
         public string tempInitialDir = "C:\\Users\\hyung\\source\\repos\\Celenort\\CAESimulation\\bin\\Debug";
+        public static DateTime datestrt;
+        public static DateTime dateend;
 
 
 
@@ -36,7 +39,23 @@ namespace CAESimulation
             var lineSeries = new LineSeries();
             getGZ(ref lineSeries);
             myModel.Series.Add(lineSeries);
+            DateTimeAxis xAxis = new DateTimeAxis();
+            xAxis.Position = AxisPosition.Bottom;
+            xAxis.IsZoomEnabled = false;
+
+            //Define the y axis
+            LinearAxis yAxis = new LinearAxis();
+            yAxis.Position = AxisPosition.Left;
+            //Disable the axis zoom
+            yAxis.IsZoomEnabled = false;
+
+            //Add the Axes to the graph
+            myModel.Axes.Add(xAxis);
+            myModel.Axes.Add(yAxis);
             this.plotView1.Model = myModel;
+
+
+
             textBox1.Text = Math.Round(Calculation.totalPowerGen,3).ToString();
             textBox2.Text = Math.Round(Theory.totalPwrGen,3).ToString();
             textBox3.Text = Math.Round((Theory.totalPwrGen / times),3).ToString();
@@ -207,13 +226,75 @@ namespace CAESimulation
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+            if (DateTime.Compare(input_dateTimePicker1.Value,datemin)<0 || DateTime.Compare(input_dateTimePicker1.Value,datemax)>0)
+            {
+                MessageBox.Show("Selected date is not included in the data");
+                input_dateTimePicker1.Value = datemin;
+            } else if (DateTime.Compare(input_dateTimePicker1.Value, input_dateTimePicker2.Value)>0)
+            {
+                MessageBox.Show("Selected date cannot be later than the End date");
+                input_dateTimePicker1.Value = datemin;
+            }
             input_monthCalendar1.SelectionStart = input_dateTimePicker1.Value;
+            datestrt = input_dateTimePicker1.Value;
+            input_fromtxtbox.Text = Math.Round((dateend - datestrt).TotalDays,0).ToString();
+            input_totxtbox.Text = (dateend - datestrt).TotalHours.ToString();
+
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
+            if (DateTime.Compare(input_dateTimePicker2.Value, datemin) < 0 || DateTime.Compare(input_dateTimePicker2.Value, datemax) > 0)
+            {
+                MessageBox.Show("Selected date is not included in the data");
+                input_dateTimePicker2.Value = datemax;
+            }
+            else if (DateTime.Compare(input_dateTimePicker1.Value, input_dateTimePicker2.Value) > 0)
+            {
+                MessageBox.Show("Selected date cannot be later than the End date");
+                input_dateTimePicker2.Value = datemax;
+            }
             input_monthCalendar2.SelectionStart = input_dateTimePicker1.Value;
+            dateend = input_dateTimePicker2.Value;
+            input_fromtxtbox.Text = Math.Round((dateend - datestrt).TotalDays, 0).ToString();
+            input_totxtbox.Text = (dateend - datestrt).TotalHours.ToString();
+
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var myModel = new PlotModel { Title = "Example 1" };
+            var lineSeries = new LineSeries();
+            object[] arrObj = Theory.dtTheory.Select().Select(x => x["SurplusElec"]).ToArray();
+            double[] arrDouble = arrObj.Cast<double>().ToArray();
+            List<double> arrList = arrDouble.ToList<double>();
+            List<double> gzvals = ParseDT();
+            double i = 0;
+            foreach (double item in gzvals)
+            {
+                lineSeries.Points.Add(new DataPoint(i, item));
+                i++; // i : 1 hour
+                times = int.Parse(i.ToString());
+            }
+
+            getGZ(ref lineSeries);
+            myModel.Series.Add(lineSeries);
+            DateTimeAxis xAxis = new DateTimeAxis();
+            xAxis.Position = AxisPosition.Bottom;
+            xAxis.IsZoomEnabled = false;
+
+            //Define the y axis
+            LinearAxis yAxis = new LinearAxis();
+            yAxis.Position = AxisPosition.Left;
+            //Disable the axis zoom
+            yAxis.IsZoomEnabled = false;
+
+            //Add the Axes to the graph
+            myModel.Axes.Add(xAxis);
+            myModel.Axes.Add(yAxis);
+            this.plotView1.Model = myModel;
+        }
+
 
     }
 }

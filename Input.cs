@@ -11,19 +11,46 @@ namespace CAESimulation
 {
     public partial class CAESimulation : Form
     {
+        public static DataTable dtWind;
+        public static DataTable dtPower;
+        public static DataTable dtOcean;
+        public static DataTable dtElec;
+        public static DataTable dtTb;
+        public static DataTable dtCombined; // 결국은 Input data로 이걸 사용하게 됨.
+        public static DateTime datemin;
+        public static DateTime datemax;
         private void input_apply_Click(object sender, EventArgs e)
         {
             //Todo : Delete bttn1
 
             Input ip = new Input(windfiledir, metoceanfiledir, energyfiledir);
             ip.LoadWind();
+            dtWind = ip.dtWind;
             ip.LoadPower();
-            Turbine tb = new Turbine(turbinefiledir);
-            tb.SelectModel();
-            Calculation cc = new Calculation();
-            cc.LoadDataTable(ip, tb);
+            dtPower = ip.dtPower;
+            ip.LoadMetOcean();
+            dtOcean = ip.dtOcean;
+            dtCombined=MergeDatas(dtWind, dtPower, dtOcean);
+            groupBox2.Visible = true;
+            string startDate = dtCombined.Rows[0]["Date"].ToString();
+            string endDate = dtCombined.Rows[dtCombined.Rows.Count - 1]["Date"].ToString();
+            DateTime dt1 = DateTime.ParseExact(startDate, "yyyy-MM-ddTHH:mm:ss",
+                                System.Globalization.CultureInfo.InvariantCulture);
+            datemin = dt1;
+            DateTime dt2 = DateTime.ParseExact(endDate, "yyyy-MM-ddTHH:mm:ss",
+                    System.Globalization.CultureInfo.InvariantCulture);
+            datemax = dt2;
+            input_dateTimePicker1.Value = dt1;
+            input_dateTimePicker2.Value = dt2;
+
+
+            //Turbine tb = new Turbine(turbinefiledir);
+            //tb.SelectModel();
+            //dtTb = tb.dtTb;
+            //Calculation cc = new Calculation();
+            //cc.LoadDataTable(ip, tb);
             //cc.ConvertGlobalToLocalUsage();
-            //DataTable dt = cc.VelocityToPower(ip.dtWind, tb.dtTb);
+            //DataTable dt2 = cc.VelocityToPower(ip.dtWind, tb.dtTb);
             //cc.MergePwrgen();
             //Theory th = new Theory(cc);
             //th.ApplyTheory();
@@ -31,7 +58,75 @@ namespace CAESimulation
 
         private void input_preview_Click(object sender, EventArgs e)
         {
-            input_previewdatagridview.DataSource = Theory.dtTheory;
+            string datestrt = input_dateTimePicker1.Value.ToString("s");
+            string dateend = input_dateTimePicker2.Value.ToString("s");
+            DataRow drstrt = dtCombined.Rows.Find(datestrt);
+            DataRow drend = dtCombined.Rows.Find(dateend);
+            int idxstrt = dtCombined.Rows.IndexOf(drstrt);
+            int idxend = dtCombined.Rows.IndexOf(drend);
+            DataTable result = dtCombined.Clone();
+            for (int i = idxstrt;i<=idxend;i++)
+            {
+                result.ImportRow(dtCombined.Rows[i]);
+            }
+            input_previewdatagridview.DataSource = result;
+        }
+        private void input_buttonfinalaply_Click(object sender, EventArgs e)
+        {
+            string datestrt = input_dateTimePicker1.Value.ToString("s");
+            string dateend = input_dateTimePicker2.Value.ToString("s");
+            DataRow drstrt = dtCombined.Rows.Find(datestrt);
+            DataRow drend = dtCombined.Rows.Find(dateend);
+            int idxstrt = dtCombined.Rows.IndexOf(drstrt);
+            int idxend = dtCombined.Rows.IndexOf(drend);
+            DataTable result = dtCombined.Clone();
+            for (int i = idxstrt; i <= idxend; i++)
+            {
+                result.ImportRow(dtCombined.Rows[i]);
+            }
+            dtCombined = result;
+        }
+        public DataTable MergeDatas(DataTable dtWind, DataTable dtPower, DataTable dtOcean)
+        {
+            DataTable result = dtWind.Copy();
+            result.Columns.Add(new DataColumn("Power", typeof(double))); // PWR
+            result.Columns.Add(new DataColumn("SeaWaterTemp", typeof(double))); //Ocean
+            result.Columns.Add(new DataColumn("MaxWave", typeof(double)));
+            result.Columns.Add(new DataColumn("SigWave", typeof(double)));
+            result.Columns.Add(new DataColumn("AvgWave", typeof(double)));
+            result.Columns.Add(new DataColumn("WavePeriod", typeof(double)));
+
+            foreach (DataRow dr in result.Rows)
+            {
+                object date = dr["Date"];
+                DataRow powerRow = dtPower.Rows.Find(date);
+                DataRow waveRow = dtOcean.Rows.Find(date);
+
+                if (powerRow != null)
+                {
+                    dr["Power"] = powerRow["Power"];
+                }
+                else
+                {
+                    dr["Power"] = -1;
+                }
+                if (waveRow != null)
+                {
+                    dr["SeaWaterTemp"] = waveRow["SeaWaterTemp"];
+                    dr["MaxWave"] = waveRow["MaxWave"];
+                    dr["SigWave"] = waveRow["SigWave"];
+                    dr["AvgWave"] = waveRow["AvgWave"];
+                    dr["WavePeriod"] = waveRow["WavePeriod"];
+                } else
+                {
+                    dr["SeaWaterTemp"] = -100;
+                    dr["MaxWave"] = -1;
+                    dr["SigWave"] = -1;
+                    dr["AvgWave"] = -1;
+                    dr["WavePeriod"] = -1;
+                }
+            }
+            return result;
         }
     }
 
@@ -183,14 +278,22 @@ namespace CAESimulation
             {
                 s = sr.ReadLine();
                 sitems = s.Split(',');
-                string datetime = sitems[1];
-                DataRow dr = dtPower.NewRow();
+                string datetime = DissectDateTime2(sitems[1]);
+                DataRow dr = dtOcean.NewRow();
+                if (sitems[2]=="")
+                {
+                    sitems[2] = "-100"; // Not measured
+                }
+                if (sitems[3]=="")
+                {
+                    continue;
+                }
                 dr["SeaWaterTemp"] = sitems[2];
                 dr["MaxWave"] = sitems[3];
                 dr["SigWave"] = sitems[4];
                 dr["AvgWave"] = sitems[5];
                 dr["WavePeriod"] = sitems[6];
-                dr["Date"] = DissectDateTime2(datetime); //Todo
+                dr["Date"] = datetime; //Todo
                 dtOcean.Rows.Add(dr);
             }
             sr.Close();
@@ -213,30 +316,8 @@ namespace CAESimulation
         }
         public string DissectDateTime2(string date) // for metocean
         {
-            char[] dateAsChar = date.ToCharArray();
-            dateAsChar[10] = 'T';
-            char[] hour = new char[8];
-            for (int i = 12;dateAsChar[i]==':';i++)
-            {
-                hour.Append<char>(dateAsChar[i]);
-            }
-            int hour12 = int.Parse(hour.ToString());
-            int length = dateAsChar.Length;
-            if (dateAsChar[length-2] == 'A' && hour12 ==12)
-            {
-                hour12 = 0;
-            }
-            if (dateAsChar[length-2]=='P') // 오후
-            {
-                hour12 += 12;
-            }
-            char[] datechar = new char[11];
-            for (int j = 0; j < 11; j++)
-            {
-                datechar[j] = dateAsChar[j];
-            }
-            string result = datechar.ToString() +hourdict[hour12]+":00:00";
-            return result;
+            string datetime = date.Substring(0, 10)+"T"+ date.Substring(11, 2)+":00:00";
+            return datetime;
         }
     }
 }

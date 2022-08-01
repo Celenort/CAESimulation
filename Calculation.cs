@@ -25,7 +25,6 @@ namespace CAESimulation
             dtTb = tb.dtTb.Copy(); // Load Infors from Tb, ip class
         }
 
-
         public double LinIntp(double velo, DataTable dtTb)
             // Perform Linear Interpolation using Velocity-Power curve
             // Input : velocity (double), Turbine DataTable("V" -> "P")
