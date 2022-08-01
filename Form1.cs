@@ -133,11 +133,11 @@ namespace CAESimulation
             myModel3.Axes.Add(yAxis3);
             this.rst_wavemax.Model = myModel3;
 
-            Calculation cc = new Calculation();
-            cc.ConvertGlobalToLocalUsage(dtCombined);
-            cc.VelocityToPower(ref dtCombined,dtTb);
-            cc.MergePwrgen(dtCombined, dtPower);
-            Theory th = new Theory(cc);
+
+            Theory th = new Theory(dtCombined);
+            th.ConvertGlobalToLocalUsage(dtCombined);
+            th.VelocityToPower(ref dtCombined, dtTb);
+            th.MergePwrgen(dtCombined, dtPower);
             th.ApplyTheory();
             object[] arrObj = Theory.dtTheory.Select().Select(x => x["SurplusElec"]).ToArray();
             var myModel4 = new PlotModel { Title = "Surplus" };
@@ -173,7 +173,7 @@ namespace CAESimulation
 
 
 
-            textBox1.Text = Math.Round(Calculation.totalPowerGen, 3).ToString();
+            textBox1.Text = Math.Round(Theory.totalPowerGen, 3).ToString();
             textBox2.Text = Math.Round(Theory.totalPwrGen, 3).ToString();
             textBox3.Text = Math.Round((Theory.totalPwrGen / times), 3).ToString();
         }
